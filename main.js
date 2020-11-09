@@ -90,10 +90,11 @@ let displayRandomBeer = (beerName, beerImage, beerId) => {
     });
     aElement.className = "seeMoreLink";
 
-    divElement.appendChild(imgElement);
-    divElement.appendChild(h2Element);
+    divElement.appendChild(sectionElement)
+    sectionElement.appendChild(imgElement);
+    sectionElement.appendChild(h2Element);
     h2Element.appendChild(textNode);
-    divElement.appendChild(aElement);
+    sectionElement.appendChild(aElement);
     aElement.appendChild(linkNode);
 
 }
