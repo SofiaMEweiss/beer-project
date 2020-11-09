@@ -41,24 +41,24 @@ const noPic = "img/beer_without_image.png";
 let initRandom = () => {
 
     const sectElement = document.createElement("section");
-    sectElement.id="indexSearchSection";
+    sectElement.id = "indexSearchSection";
     eMain.appendChild(sectElement);
 
     const divElement = document.createElement("div");
-    divElement.className="showbeer";
+    divElement.className = "showbeer";
     sectElement.appendChild(divElement);
 
     const buttonElement = document.createElement("button");
-    buttonElement.textContent="Klick";
-    buttonElement.type="button";
-    buttonElement.id="button";
-    buttonElement.name="button";
+    buttonElement.textContent = "Click me for a random beer";
+    buttonElement.type = "button";
+    buttonElement.id = "button";
+    buttonElement.name = "button";
     sectElement.appendChild(buttonElement);
 
     button.addEventListener('click', () => {
-    fetcher(url, createRandomBeer);
+        fetcher(url, createRandomBeer);
     });
-    
+
 }
 
 
@@ -70,6 +70,8 @@ let displayRandomBeer = (beerName, beerImage, beerId) => {
 
     removeAllChildNodes(divElement);
 
+    const sectionElement = document.createElement("section")
+    sectionElement.className = "beercard";
     const h2Element = document.createElement("h2");
     const imgElement = document.createElement("img");
     const aElement = document.createElement("a");
@@ -135,13 +137,13 @@ let showProduct2 = (beerId) => {
     let imgElement = document.createElement("img");
     imgElement.className = "showimg";
     imgElement.alt = "bild:";
-    imgElement.src=noPic;
+    imgElement.src = noPic;
     if (beerId[0].image_url != null) {
         imgElement.src = beerId[0].image_url;
     }
     card.appendChild(imgElement);
 
-    
+
     let cardContainer = document.createElement("div");
     cardContainer.className = "card-container";
 
@@ -191,7 +193,7 @@ let showProduct2 = (beerId) => {
         malt_add.push(myString);
     });
     */
-    
+
 
     //const hops = beerId[0].ingredients.hops;
     //console.log(malt);
@@ -202,7 +204,7 @@ let showProduct2 = (beerId) => {
     let infoData = [
         { desc: "Alcohol by volume", val: beerId[0].abv },
         { desc: "Volume", val: beerId[0].volume.value + " " + beerId[0].volume.unit },
-        { desc: "Ingredients", val: "MALTS: "+malt_add+" YEAST: "+beerId[0].ingredients.yeast },
+        { desc: "Ingredients", val: "MALTS: " + malt_add + " YEAST: " + beerId[0].ingredients.yeast },
         { desc: "Hops", val: hops_add },
         { desc: "Food pairing", val: foods_add },
         { desc: "Brewers tips", val: beerId[0].brewers_tips }
@@ -215,7 +217,7 @@ let showProduct2 = (beerId) => {
         hElement.className = "nah";
         optElement.textContent = infoData[i].desc + ": ";
         hElement.textContent = infoData[i].val;
-        hElement.style.color="red";
+        hElement.style.color = "red";
         infoElement.appendChild(optElement);
         optElement.appendChild(hElement);
     }
@@ -233,9 +235,8 @@ let extractData = (to_get, to_add, classt) => {
     to_get.forEach(element => {
         console.log(element);
         if (classt == true) {
-            myString=" "+element.name+" ("+element.amount.value+" "+element.amount.unit+")"; 
-        }
-        else {myString=" "+element;}
+            myString = " " + element.name + " (" + element.amount.value + " " + element.amount.unit + ")";
+        } else { myString = " " + element; }
         to_add.push(myString);
     });
 }
@@ -271,7 +272,7 @@ let nysida = (param) => {
         case 0:
             const button = document.querySelector("#button");
             initRandom();
-        break;
+            break;
 
     }
     // let nyttElement = document.createElement("p");
@@ -288,4 +289,3 @@ let nysida = (param) => {
 
 
 nysida(0);
-
