@@ -100,6 +100,26 @@ function showProduct2(beerId) {
 
     console.log(beerId);
 
+    let main = document.querySelector("main");
+
+    let card = document.createElement("div");
+    main.appendChild(card);
+    card.className = "card";
+
+    let imgElement = document.createElement("img");
+    imgElement.className = "showimg";
+    imgElement.alt = "bild:";
+    imgElement.src = beerId[0].image_url;
+    card.appendChild(imgElement);
+
+    
+    let cardContainer = document.createElement("div");
+    cardContainer.className = "card-container";
+
+    let infoElement = document.createElement("ul");
+    infoElement.className = "showinfo";
+
+    /*
     let eContainer = document.createElement("section");
     eContainer.className = "testblock";
     eMain.appendChild(eContainer);
@@ -121,7 +141,7 @@ function showProduct2(beerId) {
     let infoElement = document.createElement("ul");
     eContainer2.appendChild(infoElement);
     infoElement.className = "showinfo";
-
+*/
     let infoData = [
         { desc: "Alcohol by volume", val: beerId[0].abv },
         { desc: "Volume", val: beerId[0].volume.value + " " + beerId[0].volume.unit },
@@ -133,10 +153,15 @@ function showProduct2(beerId) {
 
     for (let i = 0; i < infoData.length; i++) {
         let optElement = document.createElement("li");
-        eContainer2.appendChild(optElement);
         optElement.className = "showoption";
         optElement.textContent = infoData[i].desc + ": " + infoData[i].val;
+        infoElement.appendChild(optElement);
     }
+
+    cardContainer.appendChild(infoElement);
+    card.appendChild(cardContainer);
+    main.appendChild(card)
+
 
 }
 
