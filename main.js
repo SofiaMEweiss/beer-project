@@ -49,7 +49,7 @@ let initRandom = () => {
     sectElement.appendChild(divElement);
 
     const buttonElement = document.createElement("button");
-    buttonElement.textContent = "Click me for a random beer";
+    buttonElement.textContent = "Click for a random beer";
     buttonElement.type = "button";
     buttonElement.id = "button";
     buttonElement.name = "button";
