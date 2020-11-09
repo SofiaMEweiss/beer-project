@@ -25,14 +25,40 @@ for (let i = 0; i < menulink.length; i++) {
 }
 
 
+
+
 //Main
 
 const url = "https://api.punkapi.com/v2/beers/random";
 
-const button = document.querySelector("#button");
 const eMain = document.querySelector("main");
 
 const noPic = "img/beer_without_image.png";
+
+
+
+
+let initRandom = () => {
+
+    const sectElement = document.createElement("section");
+    sectElement.id="indexSearchSection";
+    eMain.appendChild(sectElement);
+
+    const divElement = document.createElement("div");
+    divElement.className="showbeer";
+    sectElement.appendChild(divElement);
+
+    const buttonElement = document.createElement("button");
+    buttonElement.textContent="Klick";
+    buttonElement.type="button";
+    buttonElement.id="button";
+    buttonElement.name="button";
+    sectElement.appendChild(buttonElement);
+
+
+    
+}
+
 
 
 
@@ -82,9 +108,7 @@ let createRandomBeer = (data) => {
 
 
 
-button.addEventListener('click', () => {
-    fetcher(url, createRandomBeer);
-});
+
 
 
 
@@ -167,6 +191,10 @@ function showProduct2(beerId) {
 
 
 
+
+
+
+
 //GENERELLA FUNKTIONER:
 
 //ange den URL som ska hämtas, samt den funktion (utan ()) som skall anropas:
@@ -196,3 +224,18 @@ function nysida(param, sidTitel) {
     // nyttElement.textContent = '';
 
 }
+
+
+//GENERELLA FUNKTIONER END:
+
+
+
+
+
+removeAllChildNodes(eMain);
+initRandom();
+
+const button = document.querySelector("#button");
+button.addEventListener('click', () => {
+    fetcher(url, createRandomBeer);
+});
