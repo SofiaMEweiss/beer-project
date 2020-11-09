@@ -10,9 +10,11 @@
     
     nav {
         background: rgb(75, 57, 57);
+        /* background-color: #866a6a; */
         width: 100%;
         position: fixed;
-        color: #fff;
+        /* color: #fff; */
+        color: #e4dada;
         display: flex;
         justify-content: space-between;
     }
@@ -27,12 +29,12 @@
         padding: 15px;
         text-decoration: none;
         text-transform: uppercase;
-        color: #fff;
+        color: #e4dada;
         font-size: 1.5rem;
     }
     
     nav .mainMenu li a:hover {
-        background: #9e6868;
+        background: #866a6a;
     }
     
     nav .openMenu {
@@ -49,14 +51,16 @@
         cursor: pointer;
     }
     
-    nav .logo {
+    .logo {
         margin: 6px;
-        font-size: 25px;
-        cursor: pointer;
+        font-size: 1.6rem;
+        display: flex;
+        align-items: center;
     }
     
     main {
-        background-color: rgb(179, 129, 129);
+        /* background-color: rgb(179, 129, 129); */
+        background-color: #866a6a;
         display: flex;
         justify-content: center;
         height: 100vh;
@@ -72,7 +76,7 @@
     }
     
     img {
-        height: 250px;
+        height: 40vh;
     }
     /* CSS added by Fredrik begin: */
     
@@ -112,8 +116,8 @@
         background-color: rgba(0, 0, 255, 0.5);
         margin: 5px;
     }
-
     /* CSS added by Cengiz */
+    
     #button {
         display: block;
         background: #444;
@@ -123,13 +127,14 @@
         color: white;
         border-radius: 7px;
         outline: none;
-    } 
+    }
+    
     #button:hover {
         background: #333;
     }
-
+    
     .card {
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         transition: 0.3s;
         width: 45%;
         height: auto;
@@ -140,23 +145,24 @@
         padding: 15px;
         background: white;
         border-radius: 7px;
-      }
-
-      .card ul {
-          list-style: none;
-      }
-      .card ul li {
-          margin: 5px 0;
-      }
-      
+    }
+    
+    .card ul {
+        list-style: none;
+    }
+    
+    .card ul li {
+        margin: 5px 0;
+    }
+    
     .card:hover {
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-      }
-
-      .card-container {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .card-container {
         padding: 2px 16px;
-      }
-
+    }
+    
     .seeMoreLink {
         text-decoration: none;
         padding: 7px 10px;
@@ -165,13 +171,13 @@
         margin: 11px 0 17px 0;
         display: inline-block;
     }
+    
     .seeMoreLink:hover,
     .seeMoreLink:focus {
         box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
         transform: translateY(-0.25em);
     }
-
-
+    
     #indexSearchSection {
         display: flex;
         justify-content: center;
@@ -181,13 +187,11 @@
         width: 100%;
         text-align: center;
     }
-
+    
     .main {
         display: block;
     }
-
     /* END CSS added by Cengiz */
-
     /* CSS added by Fredrik end */
     
     @media(max-width: 800px) {
@@ -216,7 +220,7 @@
         }
         nav .mainMenu li a:hover {
             background: none;
-            color: #9e6868;
+            color: #866a6a;
             font-size: 1.6rem;
         }
         .icons {
