@@ -23,7 +23,7 @@ input[type=button], input[type=submit], input[type=reset] {
     cursor: pointer;
   }
 
-  #next {
+  #next, #prev {
     background-color: #00BFFF;
     border: none;
     color: white;

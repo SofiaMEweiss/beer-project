@@ -1,25 +1,40 @@
 const API = 'https://api.punkapi.com/v2/beers';
 let page = 1;
 let searchStr;
+let lastPage = false;
+let pageSize = 10;
 
+//creating an event 
 function onSubmit(e) {
-
     searchStr = e.target[0].value;
 
-    const url = `${API}?beer_name=${searchStr}&per_page=10&page=${page}`;
+    const url = `${API}?beer_name=${searchStr}&per_page=${pageSize}&page=${page}`;
 
     fetchData(url, renderFirstBeer);
 
     e.preventDefault();
 }
 
+
 function fetchData(url, callback) {
     fetch(url)
         .then(res => res.json())
         .then(data => {
             callback(data);
-        })
-        .catch(error => console.log(error));
+
+            if(data.length == pageSize)
+            {
+                lastPage = false;
+                document.getElementById("next").disabled = false;
+            }
+            else
+            {   
+                lastPage = true;
+                document.getElementById("next").disabled = true;
+            }
+
+        }).catch(error => console.log(error));
+
 }
 
 
@@ -30,14 +45,23 @@ const mainElement = document.querySelector('main');
 formElement.addEventListener('submit', onSubmit);
 
 document.querySelector('#next').addEventListener('click', getNext);
+document.querySelector('#prev').addEventListener('click', getPrev);
+
+
 
 
 function getNext(e) {
 
+    console.log("Next page");
+
     page++;
 
+    if(page > 1)
+    {
+        document.getElementById("prev").disabled = false;
+    }
 
-    const url = `${API}?beer_name=${searchStr}&per_page=10&page=${page}`;
+    const url = `${API}?beer_name=${searchStr}&per_page=${pageSize}&page=${page}`;
 
     fetchData(url, renderFirstBeer);
 
@@ -45,9 +69,36 @@ function getNext(e) {
 }
 
 
-function render(data) {
+function getPrev(e) {
 
+    if(page == 1)
+    {
+
+        document.getElementById("prev").disabled = true;
+    }
+    else
+    {
+        console.log("Go to prev page");
+
+        page--;
+
+        const url = `${API}?beer_name=${searchStr}&per_page=${pageSize}&page=${page}`;
+
+        fetchData(url, renderFirstBeer);
+
+        e.preventDefault();  
+
+        console.log(url);
+    }
+
+}
+
+
+function render(data) {
     const ulElement = document.createElement('ul');
+
+    console.log("result count", data.length);
+
     for (let i = 0; i < data.length; i++) {
 
         const beer = data[i];
@@ -60,7 +111,6 @@ function render(data) {
 }
 
 function renderFirstBeer(data) {
-
     mainElement.innerHTML = '';
 
     for (let i = 0; i < data.length; i++) {
@@ -70,6 +120,5 @@ function renderFirstBeer(data) {
 
         mainElement.appendChild(pElement);
     }
-
 
 }
