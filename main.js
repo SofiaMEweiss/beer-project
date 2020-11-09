@@ -20,7 +20,7 @@ function close() {
 let menulink = document.querySelectorAll(".nav-link");
 for (let i = 0; i < menulink.length; i++) {
     menulink[i].addEventListener('click', () => {
-        nysida(menulink[i + 1], menulink[i].textContent);
+        nysida(i);
     });
 }
 
@@ -55,7 +55,9 @@ let initRandom = () => {
     buttonElement.name="button";
     sectElement.appendChild(buttonElement);
 
-
+    button.addEventListener('click', () => {
+    fetcher(url, createRandomBeer);
+    });
     
 }
 
@@ -81,7 +83,7 @@ let displayRandomBeer = (beerName, beerImage, beerId) => {
     //aElement.href = "info.html?name=" + beerId;
     aElement.href = "#";
     aElement.addEventListener('click', () => {
-        nysida(3, 'Visa öl');
+        nysida(3);
         showProduct(beerId);
     });
     aElement.className = "seeMoreLink";
@@ -114,13 +116,13 @@ let createRandomBeer = (data) => {
 
 //Skapar DOM-element och information för specifik öl-produkt:
 
-function showProduct(beerId) {
+let showProduct = (beerId) => {
 
     fetcher("https://api.punkapi.com/v2/beers/" + beerId, showProduct2);
 
 }
 
-function showProduct2(beerId) {
+let showProduct2 = (beerId) => {
 
     console.log(beerId);
 
@@ -217,8 +219,15 @@ let removeAllChildNodes = (parent) => {
 }
 
 
-function nysida(param, sidTitel) {
+let nysida = (param) => {
     removeAllChildNodes(eMain);
+    switch (param) {
+        case 0:
+            const button = document.querySelector("#button");
+            initRandom();
+        break;
+
+    }
     // let nyttElement = document.createElement("p");
     // eMain.appendChild(nyttElement);
     // nyttElement.textContent = '';
@@ -232,10 +241,5 @@ function nysida(param, sidTitel) {
 
 
 
-removeAllChildNodes(eMain);
-initRandom();
+nysida(0);
 
-const button = document.querySelector("#button");
-button.addEventListener('click', () => {
-    fetcher(url, createRandomBeer);
-});
