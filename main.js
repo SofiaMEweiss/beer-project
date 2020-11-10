@@ -175,11 +175,9 @@ let showProduct2 = (beerId) => {
     infoElement.className = "showinfo";
 */
 
-    let malt_add = [];
-    let hops_add = [];
-    let foods_add = [];
+    let malt_add = [], hops_add = [], foods_add = [], ferm_add = [], mash_add = [];
 
-    console.log(beerId[0].food_pairing);
+    console.log(beerId[0]);
 
     extractData(beerId[0].ingredients.malt, malt_add, true);
     extractData(beerId[0].ingredients.hops, hops_add, true);
@@ -203,10 +201,15 @@ let showProduct2 = (beerId) => {
 
 
     let infoData = [
+        { desc: beerId[0].name, val: "" },
+        { desc: "Description", val: beerId[0].description },
+        { desc: "First brewed", val: beerId[0].first_brewed },
         { desc: "Alcohol by volume", val: beerId[0].abv },
         { desc: "Volume", val: beerId[0].volume.value + " " + beerId[0].volume.unit },
+        { desc: "Boil volume", val: beerId[0].boil_volume.value + " " + beerId[0].boil_volume.unit },
         { desc: "Ingredients", val: "MALTS: " + malt_add + " YEAST: " + beerId[0].ingredients.yeast },
         { desc: "Hops", val: hops_add },
+        //{ desc: "Method", val: "FERMENTATION: " + ferm_add + " MASH TEMP: " + mash_add },
         { desc: "Food pairing", val: foods_add },
         { desc: "Brewers tips", val: beerId[0].brewers_tips }
     ];
