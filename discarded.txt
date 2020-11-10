@@ -1,0 +1,95 @@
+//SEARCH.JS
+
+
+//fetching data from API
+/*
+function fetchData(url, callback) {
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            callback(data);
+
+            
+            if(data.length == pageSize)
+            {
+                lastPage = false;
+                document.getElementById("next").disabled = false;
+            }
+            else
+            {   
+                lastPage = true;
+                document.getElementById("next").disabled = true;
+            }
+            
+
+        }).catch(error => console.log(error));
+
+}
+*/
+
+
+/*
+function getNext(e) {
+
+    //console.log("Next page");
+
+    page++;
+
+    if(page > 1)
+    {
+        document.getElementById("prev").disabled = false;
+    }
+
+    const url = `${API}?beer_name=${searchStr}&per_page=${pageSize}&page=${page}`;
+
+    fetcher(url, renderFirstBeer);
+
+    e.preventDefault();
+}
+
+
+function getPrev(e) {
+
+    if(page == 1)
+    {
+
+        document.getElementById("prev").disabled = true;
+    }
+    else
+    {
+        //console.log("Go to prev page");
+
+        page--;
+
+        const url = `${API}?beer_name=${searchStr}&per_page=${pageSize}&page=${page}`;
+
+        fetcher(url, renderFirstBeer);
+
+        e.preventDefault();  
+
+        //console.log(url);
+    }
+
+}
+*/
+
+
+
+/*
+function render(data) {
+    const ulElement = document.createElement('ul');
+
+    console.log("result count", data.length);
+
+    for (let i = 0; i < data.length; i++) {
+
+        const beer = data[i];
+
+        const liElement = document.createElement('li');
+        liElement.textContent = beer.name;
+        ulElement.appendChild(liElement);
+    }
+    mainElement.appendChild(ulElement);
+   
+}
+*/

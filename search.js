@@ -13,34 +13,11 @@ function onSubmit(e) {
 
     const url = `${API}?beer_name=${searchStr}&per_page=${pageSize}&page=${page}`;
 
-    fetchData(url, renderFirstBeer);
+    fetcher(url, renderFirstBeer);
 
     e.preventDefault();
 }
 
-
-
-//fetching data from API
-function fetchData(url, callback) {
-    fetch(url)
-        .then(res => res.json())
-        .then(data => {
-            callback(data);
-
-            if(data.length == pageSize)
-            {
-                lastPage = false;
-                document.getElementById("next").disabled = false;
-            }
-            else
-            {   
-                lastPage = true;
-                document.getElementById("next").disabled = true;
-            }
-
-        }).catch(error => console.log(error));
-
-}
 
 
 const formElement = document.querySelector('form');
@@ -50,84 +27,84 @@ const mainElement = document.querySelector('main');
 formElement.addEventListener('submit', onSubmit);
 
 
-buttonNext.addEventListener('click', getNext);
-buttonPrev.addEventListener('click', getPrev);
+//buttonNext.addEventListener('click', getNext);
+//buttonPrev.addEventListener('click', getPrev);
 
+buttonNext.addEventListener('click', function() {getNewPage(true);});
+buttonPrev.addEventListener('click', function() {getNewPage(false);});
 
-
-
-function getNext(e) {
-
-    console.log("Next page");
-
-    page++;
-
-    if(page > 1)
-    {
-        document.getElementById("prev").disabled = false;
+function getNewPage(e) {
+    if (e) {
+        page++;
+        if (page > 1) {document.getElementById("prev").disabled = false;}
+    }
+    else {
+        if (page > 1) {page--;} else {document.getElementById("prev").disabled = true;}
     }
 
     const url = `${API}?beer_name=${searchStr}&per_page=${pageSize}&page=${page}`;
 
-    fetchData(url, renderFirstBeer);
+    fetcher(url, renderFirstBeer);
 
-    e.preventDefault();
+    //e.preventDefault();
 }
 
 
-function getPrev(e) {
-
-    if(page == 1)
-    {
-
-        document.getElementById("prev").disabled = true;
-    }
-    else
-    {
-        console.log("Go to prev page");
-
-        page--;
-
-        const url = `${API}?beer_name=${searchStr}&per_page=${pageSize}&page=${page}`;
-
-        fetchData(url, renderFirstBeer);
-
-        e.preventDefault();  
-
-        console.log(url);
-    }
-
-}
-
-
-function render(data) {
-    const ulElement = document.createElement('ul');
-
-    console.log("result count", data.length);
-
-    for (let i = 0; i < data.length; i++) {
-
-        const beer = data[i];
-
-        const liElement = document.createElement('li');
-        liElement.textContent = beer.name;
-        ulElement.appendChild(liElement);
-    }
-    mainElement.appendChild(ulElement);
-   
-}
 
 
 function renderFirstBeer(data) {
-    mainElement.innerHTML = '';
+
+    let sElement = document.querySelector(".searchList");
+    //mainElement.appendChild(sElement);
+    sElement.innerHTML = '';
+    
 
     for (let i = 0; i < data.length; i++) {
         const pElement = document.createElement('p');
 
         pElement.textContent = data[i].name;
 
-        mainElement.appendChild(pElement);
+        sElement.appendChild(pElement);
+
+        pElement.addEventListener('click', () => {
+            alert(data[i].id);
+        });
+    }
+
+    if(data.length == pageSize)
+    {
+        lastPage = false;
+        document.getElementById("next").disabled = false;
+    }
+    else
+    {   
+        lastPage = true;
+        document.getElementById("next").disabled = true;
     }
  buttonNext.classList.remove('display-none');
  buttonPrev.classList.remove('display-none');
+}
+
+
+
+
+
+
+
+//ange den URL som ska hämtas, samt den funktion (utan ()) som skall anropas:
+let fetcher = (url, callback) => {
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            callback(data);
+        })
+        .catch(error => console.log(error));
+
+}
+
+//parent skall vara den klass eller det element vars children skall raderas:
+let removeAllChildNodes = (parent) => {
+    while (parent.firstChild) {
+        parent.firstChild.remove();
+    }
 }

@@ -174,7 +174,10 @@ let showProduct2 = (beerId) => {
     eContainer3.appendChild(imgElement);
     imgElement.className = "showimg";
     imgElement.alt = "bild:";
-    imgElement.src = beerId[0].image_url;
+    imgElement.src = noPic;
+    if (beerId[0].image_url != null) {
+        imgElement.src = beerId[0].image_url;
+    }
 
     let infoElement = document.createElement("ul");
     eContainer2.appendChild(infoElement);
