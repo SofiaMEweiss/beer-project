@@ -148,10 +148,9 @@
     
     .testblock {
         width: 90%;
+        height:auto;
         min-height: 90%;
         display: inline-block;
-        width: 90%;
-        min-height: 90%;
         background-color: rgba(0, 0, 255, 0.5);
         margin: 0;
         margin-top: 100px;
@@ -173,6 +172,8 @@
         background-color: rgba(0, 0, 255, 0.5);
         margin: 5px;
     }
+
+
     /* CSS added by Cengiz */
     
     .card {

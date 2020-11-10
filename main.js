@@ -131,6 +131,7 @@ let showProduct2 = (beerId) => {
 
     let main = document.querySelector("main");
 
+    /*
     let card = document.createElement("div");
     main.appendChild(card);
     card.className = "card";
@@ -143,15 +144,20 @@ let showProduct2 = (beerId) => {
         imgElement.src = beerId[0].image_url;
     }
     card.appendChild(imgElement);
+    */
 
 
+
+    /*
     let cardContainer = document.createElement("div");
     cardContainer.className = "card-container";
 
     let infoElement = document.createElement("ul");
     infoElement.className = "showinfo";
+    */
 
-    /*
+
+    
     let eContainer = document.createElement("section");
     eContainer.className = "testblock";
     eMain.appendChild(eContainer);
@@ -173,7 +179,9 @@ let showProduct2 = (beerId) => {
     let infoElement = document.createElement("ul");
     eContainer2.appendChild(infoElement);
     infoElement.className = "showinfo";
-*/
+
+
+
 
     let malt_add = [], hops_add = [], foods_add = [], ferm_add = [], mash_add = [];
 
