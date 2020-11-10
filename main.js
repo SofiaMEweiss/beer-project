@@ -157,21 +157,21 @@ let showProduct2 = (beerId) => {
     */
 
 
-    
+
     let eContainer = document.createElement("section");
     eContainer.className = "testblock";
     eMain.appendChild(eContainer);
 
     let eContainer2 = document.createElement("div");
     eContainer.appendChild(eContainer2);
-    eContainer2.className = "testblock2";
+    eContainer2.className = "testblock3";
 
     let eContainer3 = document.createElement("div");
     eContainer.appendChild(eContainer3);
     eContainer3.className = "testblock2";
 
     let imgElement = document.createElement("img");
-    eContainer3.appendChild(imgElement);
+    eContainer2.appendChild(imgElement);
     imgElement.className = "showimg";
     imgElement.alt = "bild:";
     imgElement.src = noPic;
@@ -180,13 +180,17 @@ let showProduct2 = (beerId) => {
     }
 
     let infoElement = document.createElement("ul");
-    eContainer2.appendChild(infoElement);
+    eContainer3.appendChild(infoElement);
     infoElement.className = "showinfo";
 
 
 
 
-    let malt_add = [], hops_add = [], foods_add = [], ferm_add = [], mash_add = [];
+    let malt_add = [],
+        hops_add = [],
+        foods_add = [],
+        ferm_add = [],
+        mash_add = [];
 
     console.log(beerId[0]);
 
@@ -232,7 +236,7 @@ let showProduct2 = (beerId) => {
         hElement.className = "nah";
         optElement.textContent = infoData[i].desc + ": ";
         hElement.textContent = infoData[i].val;
-        hElement.style.color = "red";
+        hElement.style.color = "rgb(54, 52, 52);";
         infoElement.appendChild(optElement);
         optElement.appendChild(hElement);
     }

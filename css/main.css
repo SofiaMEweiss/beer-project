@@ -10,6 +10,8 @@
     
     body {
         font-family: sans-serif;
+        background-color: #866a6a;
+        width: 100%;
     }
     /************************** 
     ************Nav************ 
@@ -68,11 +70,9 @@
     **************************/
     
     main {
-        background-color: #866a6a;
         display: flex;
         justify-content: center;
-        height: 100vh;
-        width: 100%;
+        /* height: 100vh; */
     }
     /************************** 
     *****Random beer page****** 
@@ -148,13 +148,12 @@
     
     .testblock {
         width: 90%;
-        height:auto;
-        min-height: 90%;
+        height: auto;
+        /* min-height: 90%; */
         display: inline-block;
-        background-color: rgba(0, 0, 255, 0.5);
-        margin: 0;
+        background-color: #866a6a;
         margin-top: 100px;
-        margin-bottom: 100px;
+        margin-bottom: 35px;
         display: flex;
         flex-flow: row wrap;
         justify-content: space-around;
@@ -166,17 +165,47 @@
         width: 100%;
         max-width: 550px;
         min-width: 400px;
-        min-height: 90%;
+        min-height: 80%;
         display: inline-block;
         box-sizing: border-box;
-        background-color: rgba(0, 0, 255, 0.5);
+        background-color: #dac7c7;
         margin: 5px;
+        border: 1px solid rgb(75, 57, 57);
+        border-radius: 5px;
     }
-
-
-    /* CSS added by Cengiz */
     
-    .card {
+    .testblock3 {
+        width: 100%;
+        max-width: 550px;
+        min-width: 400px;
+        min-height: 80%;
+        display: inline-block;
+        box-sizing: border-box;
+        background-color: #866a6a;
+        margin: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .showoption {
+        list-style-type: none;
+        color: rgb(54, 52, 52);
+        margin: 10px 15px;
+        font-weight: bold;
+    }
+    
+    .nah {
+        font-style: italic;
+        font-weight: normal;
+    }
+    
+    .testblock3 img {
+        height: 350px;
+        margin-top: 50px;
+    }
+    /* CSS added by Cengiz */
+    /* .card {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         transition: 0.3s;
         width: 45%;
@@ -204,7 +233,7 @@
     
     .card-container {
         padding: 2px 16px;
-    }
+    } */
     /* .seeMoreLink {
     text-decoration: none;
     padding: 7px 10px;
@@ -228,6 +257,10 @@
         height: 100vh;
         width: 100%;
         text-align: center;
+    }
+    
+    .searchList {
+        font-size: 0.9rem;
     }
     /* .main {
         display: block;
@@ -273,5 +306,16 @@
         .icons {
             display: inline-block;
             padding: 12px;
+        }
+        .testblock2 {
+            min-height: auto;
+        }
+        .testblock3 {
+            align-items: flex-start;
+            min-height: auto;
+        }
+        .testblock3 img {
+            height: 250px;
+            margin-top: 0px;
         }
     }
