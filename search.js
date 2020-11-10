@@ -3,9 +3,12 @@ let page = 1;
 let searchStr;
 let lastPage = false;
 let pageSize = 10;
+const buttonNext = document.querySelector('#next');
+const buttonPrev = document.querySelector('#prev');
 
 //creating an event 
 function onSubmit(e) {
+    
     searchStr = e.target[0].value;
 
     const url = `${API}?beer_name=${searchStr}&per_page=${pageSize}&page=${page}`;
@@ -16,6 +19,8 @@ function onSubmit(e) {
 }
 
 
+
+//fetching data from API
 function fetchData(url, callback) {
     fetch(url)
         .then(res => res.json())
@@ -44,8 +49,9 @@ const mainElement = document.querySelector('main');
 
 formElement.addEventListener('submit', onSubmit);
 
-document.querySelector('#next').addEventListener('click', getNext);
-document.querySelector('#prev').addEventListener('click', getPrev);
+
+buttonNext.addEventListener('click', getNext);
+buttonPrev.addEventListener('click', getPrev);
 
 
 
@@ -108,7 +114,9 @@ function render(data) {
         ulElement.appendChild(liElement);
     }
     mainElement.appendChild(ulElement);
+   
 }
+
 
 function renderFirstBeer(data) {
     mainElement.innerHTML = '';
@@ -120,5 +128,6 @@ function renderFirstBeer(data) {
 
         mainElement.appendChild(pElement);
     }
-
+ buttonNext.classList.remove('display-none');
+ buttonPrev.classList.remove('display-none');
 }
