@@ -110,7 +110,6 @@
         height: 40vh;
         margin: 10px;
     }
-    /* CSS added by Fredrik begin: */
     
     .seeMoreLink {
         margin-bottom: 20px;
@@ -120,12 +119,28 @@
     }
     
     .seeMoreLink:hover {
-        /* font-weight: bold; */
         text-decoration: underline;
     }
     
     .seeMoreLink:after {
         content: " \22B3";
+    }
+    
+    #button {
+        display: block;
+        background: #444;
+        padding: 12px 17px;
+        border: none;
+        cursor: pointer;
+        color: #dac7c7;
+        border-radius: 7px;
+        outline: none;
+        margin: 10px;
+        font-size: 1.3rem;
+    }
+    
+    #button:hover {
+        background: #333;
     }
     /************************** 
     ******Beer info page******* 
@@ -159,23 +174,6 @@
         margin: 5px;
     }
     /* CSS added by Cengiz */
-    
-    #button {
-        display: block;
-        background: #444;
-        padding: 12px 17px;
-        border: none;
-        cursor: pointer;
-        color: #dac7c7;
-        border-radius: 7px;
-        outline: none;
-        margin: 10px;
-        font-size: 1.3rem;
-    }
-    
-    #button:hover {
-        background: #333;
-    }
     
     .card {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -243,7 +241,7 @@
         /************************** 
     ***********Nav************ 
     **************************/
-        nav .mainMenu {
+        .mainMenu {
             height: 100vh;
             position: fixed;
             top: 0;
@@ -257,16 +255,16 @@
             transition: top 1.5s ease;
             display: none;
         }
-        nav .mainMenu .closeMenu {
+        .closeMenu {
             display: block;
             position: absolute;
             top: 20px;
             right: 20px;
         }
-        nav .openMenu {
+        .openMenu {
             display: block;
         }
-        nav .mainMenu li a:hover {
+        .nav-link:hover {
             background: none;
             color: #866a6a;
             font-size: 1.6rem;
