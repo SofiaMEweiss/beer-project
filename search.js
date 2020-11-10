@@ -19,13 +19,10 @@ function onSubmit(e) {
 }
 
 
-
 const formElement = document.querySelector('form');
 const mainElement = document.querySelector('main');
 
-
 formElement.addEventListener('submit', onSubmit);
-
 
 //buttonNext.addEventListener('click', getNext);
 //buttonPrev.addEventListener('click', getPrev);
@@ -51,7 +48,6 @@ function getNewPage(e) {
 
 
 
-
 function renderFirstBeer(data) {
 
     let sElement = document.querySelector(".searchList");
@@ -61,13 +57,14 @@ function renderFirstBeer(data) {
 
     for (let i = 0; i < data.length; i++) {
         const pElement = document.createElement('p');
+      pElement.setAttribute('name', value= data[i].id)
 
         pElement.textContent = data[i].name;
 
         sElement.appendChild(pElement);
 
         pElement.addEventListener('click', () => {
-            alert(data[i].id);
+            window.location.href = `info.html?name=${data[i].id}` 
         });
     }
 
@@ -84,7 +81,6 @@ function renderFirstBeer(data) {
  buttonNext.classList.remove('display-none');
  buttonPrev.classList.remove('display-none');
 }
-
 
 
 
@@ -108,3 +104,5 @@ let removeAllChildNodes = (parent) => {
         parent.firstChild.remove();
     }
 }
+
+//ta fram alla element i beer info page
