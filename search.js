@@ -1,34 +1,94 @@
+const mainElement = document.querySelector("main");
+
+
+function initSearch() {
+
+    const contElement = document.createElement("article");
+    mainElement.appendChild(contElement);
+    contElement.className="formcontainer";
+
+    const formElement = document.createElement("form");
+    contElement.appendChild(formElement);
+
+    const lElement = document.createElement("label");
+    formElement.appendChild(lElement);
+    lElement.htmlFor="beerSearch";
+
+    const iElement = document.createElement("input");
+    formElement.appendChild(iElement);
+    iElement.type="text";
+    iElement.placeholder="Search for beer...🍺";
+    iElement.name="beerSearch";
+
+    const sElement = document.createElement("button");
+    formElement.appendChild(sElement);
+    sElement.type="button";
+    sElement.id="searchButton";
+    sElement.textContent="Search";
+
+    const sectElement = document.createElement("section");
+    contElement.appendChild(sectElement);
+    sectElement.className="searchList";
+
+    let button = [];
+    for (let i=0;i<2;i++) {
+    button[i] = document.createElement("button");
+    contElement.appendChild(button[i]);
+    button[i].type="button";
+    button[i].className="display-none";
+    button[i].name="button";
+
+    button[i].id="prev";
+    button[i].textContent="Prev";
+        if (i == 1) {
+            button[i].id="next";
+            button[i].textContent="Next";
+        }
+    }
+
+    //const buttonNext = document.querySelector('#next');
+    //const buttonPrev = document.querySelector('#prev');
+
+    sElement.addEventListener('click', function() {onSubmit(iElement.value)});
+
+    button[1].addEventListener('click', function() {getNewPage(true);});
+    button[0].addEventListener('click', function() {getNewPage(false);});
+
+}
+
+
+//initSearch();
+
+
+
 const API = 'https://api.punkapi.com/v2/beers';
 let page = 1;
 let searchStr;
 let lastPage = false;
 let pageSize = 10;
-const buttonNext = document.querySelector('#next');
-const buttonPrev = document.querySelector('#prev');
+
 
 //creating an event 
 function onSubmit(e) {
     
-    searchStr = e.target[0].value;
+    searchStr = e; //.target[0].value
 
     const url = `${API}?beer_name=${searchStr}&per_page=${pageSize}&page=${page}`;
 
     fetcher(url, renderFirstBeer);
 
-    e.preventDefault();
+    //e.preventDefault();
 }
 
 
-const formElement = document.querySelector('form');
-const mainElement = document.querySelector('main');
 
-formElement.addEventListener('submit', onSubmit);
+
+
 
 //buttonNext.addEventListener('click', getNext);
 //buttonPrev.addEventListener('click', getPrev);
 
-buttonNext.addEventListener('click', function() {getNewPage(true);});
-buttonPrev.addEventListener('click', function() {getNewPage(false);});
+
 
 function getNewPage(e) {
     if (e) {
@@ -52,19 +112,27 @@ function renderFirstBeer(data) {
 
     let sElement = document.querySelector(".searchList");
     //mainElement.appendChild(sElement);
-    sElement.innerHTML = '';
+    //sElement.innerHTML = '';
+    removeAllChildNodes(sElement);
     
 
     for (let i = 0; i < data.length; i++) {
+        const ppElement = document.createElement('p');
+        sElement.appendChild(ppElement);
+
         const pElement = document.createElement('p');
-      pElement.setAttribute('name', value= data[i].id)
+        pElement.setAttribute('name', value=data[i].id);
+        pElement.className="searchItem";
+        ppElement.appendChild(pElement);
 
         pElement.textContent = data[i].name;
 
-        sElement.appendChild(pElement);
 
         pElement.addEventListener('click', () => {
-            window.location.href = `info.html?name=${data[i].id}` 
+            //nysida(1);
+            //alert(data[i].id);
+            nysida(3);
+            showProduct(data[i].id);
         });
     }
 
@@ -78,14 +146,14 @@ function renderFirstBeer(data) {
         lastPage = true;
         document.getElementById("next").disabled = true;
     }
- buttonNext.classList.remove('display-none');
- buttonPrev.classList.remove('display-none');
+    //button[1].classList.remove('display-none');
+    //button[0].classList.remove('display-none');
 }
 
 
 
 
-
+/*
 
 //ange den URL som ska hämtas, samt den funktion (utan ()) som skall anropas:
 let fetcher = (url, callback) => {
@@ -106,3 +174,7 @@ let removeAllChildNodes = (parent) => {
 }
 
 //ta fram alla element i beer info page
+
+
+
+*/

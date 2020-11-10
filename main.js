@@ -24,7 +24,7 @@ for (let i = 0; i < menulink.length; i++) {
     });
 }
 
-//test
+
 
 
 //Main
@@ -41,7 +41,7 @@ const noPic = "img/beer_without_image.png";
 let initRandom = () => {
 
     const sectElement = document.createElement("section");
-    sectElement.id = "indexSearchSection";
+    sectElement.className = "indexSearchSection";
     eMain.appendChild(sectElement);
 
     const divElement = document.createElement("div");
@@ -157,21 +157,26 @@ let showProduct2 = (beerId) => {
     */
 
 
-    
+
     let eContainer = document.createElement("section");
     eContainer.className = "testblock";
     eMain.appendChild(eContainer);
 
     let eContainer2 = document.createElement("div");
     eContainer.appendChild(eContainer2);
-    eContainer2.className = "testblock2";
+    eContainer2.className = "testblock3";
+
+    let hElement = document.createElement("h2");
+    eContainer2.appendChild(hElement);
+    hElement.textContent=beerId[0].name;
+
 
     let eContainer3 = document.createElement("div");
     eContainer.appendChild(eContainer3);
     eContainer3.className = "testblock2";
 
     let imgElement = document.createElement("img");
-    eContainer3.appendChild(imgElement);
+    eContainer2.appendChild(imgElement);
     imgElement.className = "showimg";
     imgElement.alt = "bild:";
     imgElement.src = noPic;
@@ -180,13 +185,17 @@ let showProduct2 = (beerId) => {
     }
 
     let infoElement = document.createElement("ul");
-    eContainer2.appendChild(infoElement);
+    eContainer3.appendChild(infoElement);
     infoElement.className = "showinfo";
 
 
 
 
-    let malt_add = [], hops_add = [], foods_add = [], ferm_add = [], mash_add = [];
+    let malt_add = [],
+        hops_add = [],
+        foods_add = [],
+        ferm_add = [],
+        mash_add = [];
 
     console.log(beerId[0]);
 
@@ -212,7 +221,6 @@ let showProduct2 = (beerId) => {
 
 
     let infoData = [
-        { desc: beerId[0].name, val: "" },
         { desc: "Description", val: beerId[0].description },
         { desc: "First brewed", val: beerId[0].first_brewed },
         { desc: "Alcohol by volume", val: beerId[0].abv },
@@ -232,7 +240,7 @@ let showProduct2 = (beerId) => {
         hElement.className = "nah";
         optElement.textContent = infoData[i].desc + ": ";
         hElement.textContent = infoData[i].val;
-        hElement.style.color = "red";
+        hElement.style.color = "rgb(54, 52, 52);";
         infoElement.appendChild(optElement);
         optElement.appendChild(hElement);
     }
@@ -285,10 +293,12 @@ let nysida = (param) => {
     removeAllChildNodes(eMain);
     switch (param) {
         case 0:
-            const button = document.querySelector("#button");
+            //const button = document.querySelector("#button");
             initRandom();
-            break;
-
+        break;
+        case 1:
+            initSearch();
+        break;
     }
     // let nyttElement = document.createElement("p");
     // eMain.appendChild(nyttElement);
@@ -304,3 +314,63 @@ let nysida = (param) => {
 
 
 nysida(0);
+
+
+
+
+
+
+
+
+//TA BORT SEN!
+
+/*
+
+const mainElement = document.querySelector("main");
+
+
+function initSearch() {
+    const formElement = document.createElement("form");
+    mainElement.appendChild(formElement);
+
+    const lElement = document.createElement("label");
+    formElement.appendChild(lElement);
+    lElement.htmlFor="beerSearch";
+
+    const iElement = document.createElement("input");
+    formElement.appendChild(iElement);
+    iElement.type="text";
+    iElement.placeholder="Search for beer...🍺";
+    iElement.name="beerSearch";
+
+    const sElement = document.createElement("button");
+    formElement.appendChild(sElement);
+    sElement.type="button";
+    sElement.id="searchButton";
+    sElement.textContent="Search";
+
+    const sectElement = document.createElement("section");
+    mainElement.appendChild(sectElement);
+    sectElement.className="searchList";
+
+    let button = [];
+    for (let i=0;i<2;i++) {
+    button[i] = document.createElement("button");
+    mainElement.appendChild(button[i]);
+    button[i].type="button";
+    button[i].className="display-none";
+    button[i].name="button";
+
+    button[i].id="prev";
+    button[i].textContent="Prev";
+        if (i == 1) {
+            button[i].id="next";
+            button[i].textContent="Next";
+        }
+    }
+
+    sElement.addEventListener('click', function() {onSubmit(iElement.value)});
+
+}
+
+*/
