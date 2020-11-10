@@ -241,18 +241,50 @@
        margin-top:50px;
       }
       
+
+      #searchButton{
+        background-color: #444;;
+        border: none;
+        color: white;
+        text-decoration: none;
+        margin: 4px 2px;
+        cursor: pointer;
+        text-align: center;
+        border-radius: 10em;
+        width: 5em;
+      }
+
       .searchItem {
-      background-color:blue;
+    font-weight: bold;
+    border-style: groove;
+    width: 50%;
+    border-radius: 20em;
+     background-color:#dac7c7;
+     color: #444;
       margin-top:10px;
       margin-bottom:10px;
-      font-size:1.5rem;
+      font-size:1.3rem;
       display:inline-block;
       cursor: pointer;
       }
+
+      .searchItem:hover{
+        background-color:#866a6a;;
+        border-style: groove;
+        width: 50%;
+        color: white;
+        border-radius: 20em;
+        margin-top:10px;
+        margin-bottom:10px;
+        font-size:1.3rem;
+        display:inline-block;
+        cursor: pointer;
+        }
       
       .formcontainer {
       
-      background-color:red;
+      border-style: outset;
+      background-color: #dac7c7;
       width:80%;
       min-height:400px;
       margin-top:50px;
@@ -266,21 +298,11 @@
       }
       
       input[type=text]:focus{
-        background-color: #B0E0E6;
-      }
-      
-      input[type=button], input[type=submit], input[type=reset] {
-        background-color: #00BFFF;
-        border: none;
-        color: white;
-        border-radius: 10em;
-        text-decoration: none;
-        margin: 4px 2px;
-        cursor: pointer;
+        background-color: #FDF5E6;
       }
       
       #next, #prev {
-        background-color: #00BFFF;
+        background-color: #444;
         border: none;
         color: white;
         text-decoration: none;
@@ -288,6 +310,7 @@
         cursor: pointer;
         text-align: center;
         border-radius: 10em;
+        width: 3.5em;
       }
       /*
       .display-none {
