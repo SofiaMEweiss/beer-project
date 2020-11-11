@@ -16,7 +16,6 @@
     /************************** 
     ************Nav************ 
     **************************/
-
     
     nav {
         background: rgb(75, 57, 57);
@@ -53,7 +52,7 @@
         cursor: pointer;
     }
     
-    .closeMenu, 
+    .closeMenu,
     i {
         font-size: 2rem;
         display: none;
@@ -88,7 +87,7 @@
         width: 100%;
         text-align: center;
     }
-
+    
     .showbeer {
         display: flex;
         justify-content: flex-end;
@@ -200,13 +199,13 @@
         align-items: center;
         flex-flow: column wrap;
     }
-
-    .testblock3 > h2 {
-        text-align:left;
-        width:100%;
-        padding-left:5%;
-        display:block;
-        font-size:2em;
+    
+    .testblock3>h2 {
+        text-align: left;
+        width: 100%;
+        padding-left: 5%;
+        display: block;
+        font-size: 2em;
     }
     
     .showoption {
@@ -225,25 +224,20 @@
         height: 350px;
         margin-top: 50px;
     }
-
-    
-
     /************************** 
     ****** Search page  ******* 
     **************************/
-
-
-
-    form{
+    
+    form {
         display: flex;
         justify-content: center;
-       height: 40px;
-       margin-top:50px;
-      }
-      
-
-      #searchButton{
-        background-color: #444;;
+        height: 40px;
+        margin-top: 50px;
+    }
+    
+    #searchButton {
+        background-color: #444;
+        ;
         border: none;
         color: white;
         text-decoration: none;
@@ -252,56 +246,59 @@
         text-align: center;
         border-radius: 10em;
         width: 5em;
-      }
-
-      .searchItem {
-    font-weight: bold;
-    border-style: groove;
-    width: 50%;
-    border-radius: 20em;
-     background-color:#dac7c7;
-     color: #444;
-      margin-top:10px;
-      margin-bottom:10px;
-      font-size:1.3rem;
-      display:inline-block;
-      cursor: pointer;
-      }
-
-      .searchItem:hover{
-        background-color:#866a6a;;
+    }
+    
+    .searchItem {
+        font-weight: bold;
+        border-style: groove;
+        width: 50%;
+        border-radius: 20em;
+        background-color: #dac7c7;
+        color: #444;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-size: 0.9rem;
+        display: inline-block;
+        cursor: pointer;
+        padding: 5px 10px;
+    }
+    
+    .searchItem:hover {
+        background-color: #866a6a;
+        ;
         border-style: groove;
         width: 50%;
         color: white;
         border-radius: 20em;
-        margin-top:10px;
-        margin-bottom:10px;
-        font-size:1.3rem;
-        display:inline-block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+        display: inline-block;
         cursor: pointer;
-        }
-      
-      .formcontainer {
-      
-      border-style: outset;
-      background-color: #dac7c7;
-      width:80%;
-      min-height:400px;
-      margin-top:50px;
-      
-      }
-      
-      
-      input[type=text]:focus, input[type=text] {
+    }
+    
+    .formcontainer {
+        border: 1px solid rgb(75, 57, 57);
+        border-radius: 5px;
+        background-color: #dac7c7;
+        width: 80%;
+        min-height: 400px;
+        margin-top: 100px;
+        margin-bottom: 30px;
+    }
+    
+    input[type=text]:focus,
+    input[type=text] {
         text-align: center;
         border-radius: 10em;
-      }
-      
-      input[type=text]:focus{
+    }
+    
+    input[type=text]:focus {
         background-color: #FDF5E6;
-      }
-      
-      #next, #prev {
+    }
+    
+    #next,
+    #prev {
         background-color: #444;
         border: none;
         color: white;
@@ -311,25 +308,15 @@
         text-align: center;
         border-radius: 10em;
         width: 3.5em;
-      }
-      /*
+    }
+    /*
       .display-none {
         display: none;
       }
       */
-
-
-
-
-
-
-
     /************************** 
     ******Search page end******
     **************************/
-
-
-
     /************************** 
     ******Mobile version******* 
     **************************/
