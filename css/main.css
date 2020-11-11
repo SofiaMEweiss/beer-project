@@ -9,21 +9,21 @@
     }
     
     body {
-        font-family: sans-serif;
         background-color: #866a6a;
-        width: 100%;
+        font-family: sans-serif;
+        font-size: 14px;
     }
     /************************** 
     ************Nav************ 
     **************************/
     
     nav {
-        background: rgb(75, 57, 57);
-        width: 100%;
-        position: fixed;
-        color: #e4dada;
         display: flex;
         justify-content: space-between;
+        width: 100%;
+        position: fixed;
+        background: rgb(75, 57, 57);
+        color: #e4dada;
     }
     
     .mainMenu {
@@ -34,11 +34,11 @@
     .nav-link {
         display: inline-block;
         padding: 15px;
-        text-decoration: none;
-        text-transform: uppercase;
-        color: #e4dada;
-        font-size: 1.5rem;
         border-radius: 25px 0 0 0;
+        text-decoration: none;
+        color: #e4dada;
+        text-transform: uppercase;
+        font-size: 1.5rem;
     }
     
     .nav-link:hover {
@@ -46,24 +46,24 @@
     }
     
     .openMenu {
-        font-size: 2rem;
-        margin: 11px 20px;
         display: none;
+        margin: 11px 20px;
         cursor: pointer;
+        font-size: 2rem;
     }
     
     .closeMenu,
     i {
-        font-size: 2rem;
         display: none;
+        font-size: 2rem;
         cursor: pointer;
     }
     
     .logo {
-        margin: 0 0 0 6px;
-        font-size: 1.6rem;
         display: flex;
         align-items: center;
+        margin: 0 0 0 6px;
+        font-size: 1.6rem;
     }
     /************************** 
     ***********Main************ 
@@ -72,60 +72,77 @@
     main {
         display: flex;
         justify-content: center;
-        /* height: 100vh; */
     }
     /************************** 
     *****Random beer page****** 
     **************************/
     
-    .indexSearchSection {
+    .indexRandomBeerSection {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        flex-direction: column;
-        height: 100vh;
         width: 100%;
+        height: 100vh;
         text-align: center;
     }
     
-    .showbeer {
+    #button {
+        display: block;
+        margin: 10px;
+        padding: 12px 17px;
+        background: #444;
+        border: none;
+        outline: none;
+        border-radius: 7px;
+        cursor: pointer;
+        color: #dac7c7;
+        font-size: 1.3rem;
+    }
+    
+    #button:hover {
+        background: #333;
+        color: #866a6a;
+    }
+    
+    .showBeerContainer {
         display: flex;
+        flex-direction: column;
         justify-content: flex-end;
         align-items: center;
-        flex-direction: column;
         text-align: center;
     }
     
     .beercard {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        flex-direction: column;
         width: 300px;
-        border-radius: 5px;
-        border: 1px solid rgb(75, 57, 57);
-        text-align: center;
         height: 63vh;
         margin-top: 20%;
         background-color: #dac7c7;
+        border-radius: 5px;
+        border: 1px solid rgb(75, 57, 57);
+        text-align: center;
     }
     
-    h2 {
-        font-size: 1.1rem;
-        color: rgb(54, 52, 52);
+    .beercard>h2 {
         margin-bottom: 10px;
+        color: #333;
+        font-size: 1.1rem;
     }
     
-    img {
+    .beercard>img {
         height: 40vh;
         margin: 10px;
     }
     
     .seeMoreLink {
-        margin-bottom: 20px;
         display: block;
+        margin-bottom: 20px;
         text-decoration: none;
-        color: rgb(54, 52, 52);
+        color: #333;
     }
     
     .seeMoreLink:hover {
@@ -135,96 +152,72 @@
     .seeMoreLink:after {
         content: " \22B3";
     }
-    
-    #button {
-        display: block;
-        background: #444;
-        padding: 12px 17px;
-        border: none;
-        cursor: pointer;
-        color: #dac7c7;
-        border-radius: 7px;
-        outline: none;
-        margin: 10px;
-        font-size: 1.3rem;
-    }
-    
-    #button:hover {
-        background: #333;
-    }
     /************************** 
     ******Beer info page******* 
     **************************/
     
-    .testblock {
-        width: 90%;
-        height: auto;
-        /* min-height: 90%; */
+    .indexInfoBeerSection {
         display: inline-block;
-        background-color: #866a6a;
-        /*background-color:green;*/
-        margin-top: 100px;
-        margin-bottom: 35px;
         display: flex;
         flex-flow: row wrap;
         justify-content: space-around;
         align-items: flex-start;
-        align-content: flex-start;
+        width: 90%;
+        height: auto;
+        margin-top: 100px;
+        margin-bottom: 35px;
+        background-color: #866a6a;
     }
     
-    .testblock2 {
+    .beerInfoContainer {
+        display: inline-block;
         width: 100%;
         max-width: 650px;
         min-width: 400px;
         min-height: 80%;
-        display: inline-block;
-        box-sizing: border-box;
-        background-color: #dac7c7;
         margin: 5px;
+        background-color: #dac7c7;
         border: 1px solid rgb(75, 57, 57);
-        /*background-color:blue;*/
         border-radius: 5px;
     }
     
-    .testblock3 {
+    .beerImgContainer {
+        display: inline-block;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
         width: 100%;
         max-width: 300px;
         min-width: 300px;
-        /*min-height: 80%;*/
-        display: inline-block;
-        box-sizing: border-box;
-        background-color: #866a6a;
-        /*background-color:red;*/
         margin: 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-flow: column wrap;
+        background-color: #866a6a;
     }
     
-    .testblock3>h2 {
-        text-align: left;
+    .beerImgContainer>h2 {
+        display: block;
         width: 100%;
         padding-left: 5%;
-        display: block;
-        font-size: 2em;
+        text-align: left;
+        color: #333;
+        font-size: 1.7rem;
     }
     
-    .showoption {
+    .beerImgContainer>img {
+        height: 350px;
+        margin-top: 40px;
+    }
+    
+    .showBeerOptions {
         list-style-type: none;
-        color: rgb(54, 52, 52);
         margin: 10px 15px;
+        color: #333;
         font-weight: bold;
     }
     
-    .nah {
+    .beerInfo {
         font-style: italic;
         font-weight: normal;
-    }
-    
-    .testblock3 img {
-        height: 350px;
-        margin-top: 50px;
     }
     /************************** 
     ****** Search page  ******* 
@@ -259,24 +252,25 @@
         text-align: center;
         border-radius: 10em;
         width: 5em;
-        
     }
-
+    
     #searchButton:hover {
         background-color: #BC8F8F;
         color: rgb(0, 0, 0);
         font-weight: bold;
     }
-
+    
     .searchList {
-        min-height:450px;
+        min-height: 450px;
     }
-
-    .pageButtonContainer, .pageButtonBorder {
-        width:100%;
-    }
+    
+    .pageButtonContainer,
     .pageButtonBorder {
-        border-top:2px solid black;
+        width: 100%;
+    }
+    
+    .pageButtonBorder {
+        border-top: 2px solid black;
     }
     
     .searchItem {
@@ -332,15 +326,13 @@
         border-radius: 10em;
         width: 3.5em;
     }
-
+    
     #next:hover,
     #prev:hover {
         background-color: #BC8F8F;
         color: rgb(0, 0, 0);
         font-weight: bold;
     }
-
-
     /*
       .display-none {
         display: none;
@@ -386,17 +378,10 @@
             display: inline-block;
             padding: 12px;
         }
-        .testblock2 {
+        .beerInfoContainer {
             min-height: auto;
         }
-        /*
-        .testblock3 {
-            align-items: flex-start;
-            min-height: auto;
+        .beerImgContainer>img {
+            margin-bottom: 10px;
         }
-        .testblock3 img {
-            height: 250px;
-            margin-top: 0px;
-        }
-        */
     }

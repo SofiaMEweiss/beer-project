@@ -1,5 +1,8 @@
-//Navbar
+////////////////////
+////////Nav////////
+//////////////////
 
+//Öppna & stäng meny i mobilt  läge
 const mainMenu = document.querySelector('.mainMenu');
 const closeMenu = document.querySelector('.closeMenu');
 const openMenu = document.querySelector('.openMenu');
@@ -16,7 +19,7 @@ function close() {
     mainMenu.style.top = '-100%';
 }
 
-
+//Länkar till ny sida i nav
 let menulink = document.querySelectorAll(".nav-link");
 for (let i = 0; i < menulink.length; i++) {
     menulink[i].addEventListener('click', () => {
@@ -41,11 +44,11 @@ const noPic = "img/beer_without_image.png";
 let initRandom = () => {
 
     const sectElement = document.createElement("section");
-    sectElement.className = "indexSearchSection";
+    sectElement.className = "indexRandomBeerSection";
     eMain.appendChild(sectElement);
 
     const divElement = document.createElement("div");
-    divElement.className = "showbeer";
+    divElement.className = "showBeerContainer";
     sectElement.appendChild(divElement);
 
     const buttonElement = document.createElement("button");
@@ -63,10 +66,10 @@ let initRandom = () => {
 
 
 
-
+//Radera & skapa alla element i div .showBeerContainer
 let displayRandomBeer = (beerName, beerImage, beerId) => {
 
-    const divElement = document.querySelector(".showbeer");
+    const divElement = document.querySelector(".showBeerContainer");
 
     removeAllChildNodes(divElement);
 
@@ -129,6 +132,7 @@ let showProduct2 = (beerId) => {
 
     console.log(beerId);
 
+    //används den här variabeln här??
     let main = document.querySelector("main");
 
     /*
@@ -159,21 +163,21 @@ let showProduct2 = (beerId) => {
 
 
     let eContainer = document.createElement("section");
-    eContainer.className = "testblock";
+    eContainer.className = "indexInfoBeerSection";
     eMain.appendChild(eContainer);
 
     let eContainer2 = document.createElement("div");
     eContainer.appendChild(eContainer2);
-    eContainer2.className = "testblock3";
+    eContainer2.className = "beerImgContainer";
 
     let hElement = document.createElement("h2");
     eContainer2.appendChild(hElement);
-    hElement.textContent=beerId[0].name;
+    hElement.textContent = beerId[0].name;
 
 
-    let eContainer3 = document.createElement("div");
+    let eContainer3 = document.createElement("article");
     eContainer.appendChild(eContainer3);
-    eContainer3.className = "testblock2";
+    eContainer3.className = "beerInfoContainer";
 
     let imgElement = document.createElement("img");
     eContainer2.appendChild(imgElement);
@@ -186,6 +190,7 @@ let showProduct2 = (beerId) => {
 
     let infoElement = document.createElement("ul");
     eContainer3.appendChild(infoElement);
+    //Denna klass används inte, vi behöver kanske inte skapa en klass utan bara elementet?
     infoElement.className = "showinfo";
 
 
@@ -235,11 +240,12 @@ let showProduct2 = (beerId) => {
 
     for (let i = 0; i < infoData.length; i++) {
         let optElement = document.createElement("li");
-        optElement.className = "showoption";
+        optElement.className = "showBeerOptions";
         let hElement = document.createElement("span");
-        hElement.className = "nah";
+        hElement.className = "beerInfo";
         optElement.textContent = infoData[i].desc + ": ";
         hElement.textContent = infoData[i].val;
+        //Ej style i js eller hur?
         hElement.style.color = "rgb(54, 52, 52);";
         infoElement.appendChild(optElement);
         optElement.appendChild(hElement);
@@ -295,10 +301,10 @@ let nysida = (param) => {
         case 0:
             //const button = document.querySelector("#button");
             initRandom();
-        break;
+            break;
         case 1:
             initSearch();
-        break;
+            break;
     }
     // let nyttElement = document.createElement("p");
     // eMain.appendChild(nyttElement);
