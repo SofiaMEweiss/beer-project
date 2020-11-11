@@ -1,6 +1,7 @@
 const mainElement = document.querySelector("main");
 
 
+
 function initSearch() {
 
     const contElement = document.createElement("article");
@@ -19,12 +20,24 @@ function initSearch() {
     iElement.type="text";
     iElement.placeholder="Search for beer...🍺";
     iElement.name="beerSearch";
+    iElement.setAttribute('maxLength', 50);
+
+    const hopsElement = document.createElement("input");
+    formElement.appendChild(hopsElement);
+    hopsElement.type="text";
+    hopsElement.placeholder="Search for hop...";
+    hopsElement.name="hopSearch";
+    hopsElement.setAttribute('maxLength', 40);
 
     const sElement = document.createElement("button");
     formElement.appendChild(sElement);
     sElement.type="button";
     sElement.id="searchButton";
     sElement.textContent="Search";
+
+    const errElement = document.createElement("span");
+    formElement.appendChild(errElement);
+    errElement.className="errorfield";
 
     const sectElement = document.createElement("section");
     contElement.appendChild(sectElement);
@@ -49,7 +62,7 @@ function initSearch() {
     //const buttonNext = document.querySelector('#next');
     //const buttonPrev = document.querySelector('#prev');
 
-    sElement.addEventListener('click', function() {onSubmit(iElement.value)});
+    sElement.addEventListener('click', function() {onSubmit(iElement, errElement, hopsElement)});
 
     button[1].addEventListener('click', function() {getNewPage(true);});
     button[0].addEventListener('click', function() {getNewPage(false);});
@@ -69,13 +82,22 @@ let pageSize = 10;
 
 
 //creating an event 
-function onSubmit(e) {
+function onSubmit(e, efield, hfield) {
     
-    searchStr = e; //.target[0].value
+    searchStr = e.value; //.target[0].value
 
-    const url = `${API}?beer_name=${searchStr}&per_page=${pageSize}&page=${page}`;
+    let url = "";
 
-    fetcher(url, renderFirstBeer);
+    url+=API+"?per_page="+pageSize+"&page="+page;
+    if (e.value.length > 0) {url+="&beer_name="+e.value;}
+    if (hfield.value.length > 0) {url+="&hops="+hfield.value;}
+
+    alert(url);
+
+    //const url = `${API}?beer_name=${e.value}&per_page=${pageSize}&page=${page}`;
+    //const url = `${API}?per_page=${pageSize}&page=${page}&beer_name=${e.value}`;
+
+    validateForm(url, e, efield, hfield);
 
     //e.preventDefault();
 }
@@ -153,28 +175,18 @@ function renderFirstBeer(data) {
 
 
 
-/*
 
-//ange den URL som ska hämtas, samt den funktion (utan ()) som skall anropas:
-let fetcher = (url, callback) => {
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            callback(data);
-        })
-        .catch(error => console.log(error));
 
-}
+function validateForm(url, e, efield) {
+    //lägg till check för special characters
+    let passed = true;
+    let mess = "";
 
-//parent skall vara den klass eller det element vars children skall raderas:
-let removeAllChildNodes = (parent) => {
-    while (parent.firstChild) {
-        parent.firstChild.remove();
+    //if (e.value.length <= 0) {passed=false;mess+="Sökrutan får inte vara tom! \r test";e.className="formError";}
+
+    if (passed) {fetcher(url, renderFirstBeer);}
+    else {
+        efield.textContent=mess;
     }
+
 }
-
-//ta fram alla element i beer info page
-
-
-
-*/
