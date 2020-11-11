@@ -162,6 +162,7 @@
         /* min-height: 90%; */
         display: inline-block;
         background-color: #866a6a;
+        /*background-color:green;*/
         margin-top: 100px;
         margin-bottom: 35px;
         display: flex;
@@ -181,13 +182,14 @@
         background-color: #dac7c7;
         margin: 5px;
         border: 1px solid rgb(75, 57, 57);
+        /*background-color:blue;*/
         border-radius: 5px;
     }
     
     .testblock3 {
         width: 100%;
-        max-width: 550px;
-        min-width: 400px;
+        max-width: 300px;
+        min-width: 300px;
         /*min-height: 80%;*/
         display: inline-block;
         box-sizing: border-box;
