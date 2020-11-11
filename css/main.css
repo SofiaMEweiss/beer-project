@@ -267,15 +267,8 @@
     
     .searchItem:hover {
         background-color: #866a6a;
-        ;
         border-style: groove;
-        width: 50%;
         color: white;
-        border-radius: 20em;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        font-size: 1.3rem;
-        display: inline-block;
         cursor: pointer;
     }
     
@@ -316,9 +309,6 @@
         display: none;
       }
       */
-    /************************** 
-    ******Search page end******
-    **************************/
     /************************** 
     ******Mobile version******* 
     **************************/
