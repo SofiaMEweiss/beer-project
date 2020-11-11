@@ -245,9 +245,9 @@ let showProduct2 = (beerId) => {
         optElement.appendChild(hElement);
     }
 
-    cardContainer.appendChild(infoElement);
-    card.appendChild(cardContainer);
-    main.appendChild(card)
+    //cardContainer.appendChild(infoElement);
+    //card.appendChild(cardContainer);
+    //main.appendChild(card)
 
 
 }

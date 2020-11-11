@@ -267,6 +267,17 @@
         color: rgb(0, 0, 0);
         font-weight: bold;
     }
+
+    .searchList {
+        min-height:450px;
+    }
+
+    .pageButtonContainer, .pageButtonBorder {
+        width:100%;
+    }
+    .pageButtonBorder {
+        border-top:2px solid black;
+    }
     
     .searchItem {
         font-weight: bold;
