@@ -251,7 +251,6 @@
     
     #searchButton {
         background-color: #444;
-        ;
         border: none;
         color: white;
         text-decoration: none;
@@ -260,6 +259,13 @@
         text-align: center;
         border-radius: 10em;
         width: 5em;
+        
+    }
+
+    #searchButton:hover {
+        background-color: #BC8F8F;
+        color: rgb(0, 0, 0);
+        font-weight: bold;
     }
     
     .searchItem {
@@ -315,6 +321,15 @@
         border-radius: 10em;
         width: 3.5em;
     }
+
+    #next:hover,
+    #prev:hover {
+        background-color: #BC8F8F;
+        color: rgb(0, 0, 0);
+        font-weight: bold;
+    }
+
+
     /*
       .display-none {
         display: none;
