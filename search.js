@@ -31,7 +31,7 @@ let createButtons = (contElement) => {
         pgbutton[i] = document.createElement("button");
         contElement.appendChild(pgbutton[i]);
         pgbutton[i].type = "button";
-        pgbutton[i].className = "display-none";
+        pgbutton[i].className = "prevNextButtons";
         pgbutton[i].name = "button";
 
         pgbutton[i].id = "prev";
@@ -160,8 +160,8 @@ let initSearch = () => {
 
 
     //block/none, class
-    showHide("0.1", ".display-none", 0);
-    showHide("0.1", ".display-none", 1);
+    showHide("0.1", ".prevNextButtons", 0);
+    showHide("0.1", ".prevNextButtons", 1);
 
     //const buttonNext = document.querySelector('#next');
     //const buttonPrev = document.querySelector('#prev');
@@ -241,9 +241,9 @@ let renderFirstBeer = (data) => {
     removeAllChildNodes(sElement);
 
         //block/none, class
-        if (page > 1) {showHide("1", ".display-none", 0);}
-        else {showHide("0.1", ".display-none", 0);}
-        showHide("1", ".display-none", 1);
+        if (page > 1) {showHide("1", ".prevNextButtons", 0);}
+        else {showHide("0.1", ".prevNextButtons", 0);}
+        showHide("1", ".prevNextButtons", 1);
 
     for (let i=0;i<data.length;i++) {
         const ppElement = document.createElement("p");
