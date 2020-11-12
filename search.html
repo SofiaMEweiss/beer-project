@@ -12,7 +12,29 @@
 
 <body>
 
-
+    /************************** ******Desktop version****** **************************/ * { box-sizing: border-box; margin: 0; padding: 0; } body { font-family: sans-serif; background-color: #866a6a; width: 100%; } /************************** ************Nav************
+    **************************/ nav { background: rgb(75, 57, 57); width: 100%; position: fixed; color: #e4dada; display: flex; justify-content: space-between; } .mainMenu { display: flex; list-style: none; } .nav-link { display: inline-block; padding:
+    15px; text-decoration: none; text-transform: uppercase; color: #e4dada; font-size: 1.5rem; border-radius: 25px 0 0 0; } .nav-link:hover { background: #866a6a; } .openMenu { font-size: 2rem; margin: 11px 20px; display: none; cursor: pointer; } .closeMenu,
+    i { font-size: 2rem; display: none; cursor: pointer; } .logo { margin: 0 0 0 6px; font-size: 1.6rem; display: flex; align-items: center; } /************************** ***********Main************ **************************/ main { display: flex; justify-content:
+    center; /* height: 100vh; */ } /************************** *****Random beer page****** **************************/ .indexSearchSection { display: flex; justify-content: center; align-items: center; flex-direction: column; height: 100vh; width: 100%;
+    text-align: center; } .showbeer { display: flex; justify-content: flex-end; align-items: center; flex-direction: column; text-align: center; } .beercard { display: flex; justify-content: center; align-items: center; flex-direction: column; width:
+    300px; border-radius: 5px; border: 1px solid rgb(75, 57, 57); text-align: center; height: 63vh; margin-top: 20%; background-color: #dac7c7; } h2 { font-size: 1.1rem; color: rgb(54, 52, 52); margin-bottom: 10px; } img { height: 40vh; margin: 10px;
+    } .seeMoreLink { margin-bottom: 20px; display: block; text-decoration: none; color: rgb(54, 52, 52); } .seeMoreLink:hover { text-decoration: underline; } .seeMoreLink:after { content: " \22B3"; } #button { display: block; background: #444; padding:
+    12px 17px; border: none; cursor: pointer; color: #dac7c7; border-radius: 7px; outline: none; margin: 10px; font-size: 1.3rem; } #button:hover { background: #333; } /************************** ******Beer info page******* **************************/
+    .testblock { width: 90%; height: auto; /* min-height: 90%; */ display: inline-block; background-color: #866a6a; /*background-color:green;*/ margin-top: 100px; margin-bottom: 35px; display: flex; flex-flow: row wrap; justify-content: space-around;
+    align-items: flex-start; align-content: flex-start; } .testblock2 { width: 100%; max-width: 650px; min-width: 400px; min-height: 80%; display: inline-block; box-sizing: border-box; background-color: #dac7c7; margin: 5px; border: 1px solid rgb(75,
+    57, 57); /*background-color:blue;*/ border-radius: 5px; } .testblock3 { width: 100%; max-width: 300px; min-width: 300px; /*min-height: 80%;*/ display: inline-block; box-sizing: border-box; background-color: #866a6a; /*background-color:red;*/ margin:
+    5px; display: flex; justify-content: center; align-items: center; flex-flow: column wrap; } .testblock3>h2 { text-align: left; width: 100%; padding-left: 5%; display: block; font-size: 2em; } .showoption { list-style-type: none; color: rgb(54, 52,
+    52); margin: 10px 15px; font-weight: bold; } .nah { font-style: italic; font-weight: normal; } .testblock3 img { height: 350px; margin-top: 50px; } /************************** ****** Search page ******* **************************/ .formcontainer {
+    border: 1px solid rgb(75, 57, 57); border-radius: 5px; background-color: #dac7c7; width: 80%; min-height: 100vh; margin-top: 100px; margin-bottom: 30px; padding-left: 15px; } form { display: flex; justify-content: center; height: 40px; margin-top:
+    50px; margin-bottom: 15px; } #searchButton { background-color: #444; ; border: none; color: white; text-decoration: none; margin: 4px 2px; cursor: pointer; text-align: center; border-radius: 10em; width: 5em; } .searchItem { font-weight: bold; border-style:
+    groove; width: 50%; border-radius: 20em; background-color: #dac7c7; color: #444; margin-top: 5px; margin-bottom: 5px; font-size: 0.9rem; display: inline-block; cursor: pointer; padding: 5px 10px; } .searchItem:hover { background-color: #866a6a; border-style:
+    groove; color: white; cursor: pointer; } .formError { border: 2px solid red; background-color: rgb(224, 186, 186); } .errorfield { border: 2px solid red; } input[type=text]:focus, input[type=text] { text-align: center; border-radius: 10em; } input[type=text]:focus
+    { background-color: #FDF5E6; } #next, #prev { background-color: #444; border: none; color: white; text-decoration: none; margin: 4px 2px; cursor: pointer; text-align: center; border-radius: 10em; width: 3.5em; } /* .display-none { display: none; }
+    */ /************************** ******Mobile version******* **************************/ @media(max-width: 800px) { /************************** ***********Nav************ **************************/ .mainMenu { height: 100vh; position: fixed; top: 0;
+    right: 0; left: 0; z-index: 10; flex-direction: column; justify-content: center; align-items: center; background: rgb(75, 57, 57); transition: top 1.5s ease; display: none; } .closeMenu { display: block; position: absolute; top: 20px; right: 20px;
+    } .openMenu { display: block; } .nav-link:hover { background: none; color: #866a6a; font-size: 1.6rem; } .icons { display: inline-block; padding: 12px; } .testblock2 { min-height: auto; } /* .testblock3 { align-items: flex-start; min-height: auto;
+    } .testblock3 img { height: 250px; margin-top: 0px; } */ }
     <main>
         <!--
         <form>

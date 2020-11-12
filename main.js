@@ -297,6 +297,7 @@ let removeAllChildNodes = (parent) => {
 
 let nysida = (param) => {
     removeAllChildNodes(eMain);
+    close();
     switch (param) {
         case 0:
             //const button = document.querySelector("#button");
