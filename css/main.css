@@ -341,19 +341,8 @@
         cursor: pointer;
         color: white;
     }
-    /* Används ej? Rensa från JS*/
-    /* .pageButtonContainer,
-    .pageButtonBorder {
-        width: 100%;
-        background-color: red;
-    }
     
-    .pageButtonBorder {
-        border-top: 2px solid black;
-    } */
-    
-    #next,
-    #prev {
+    .prevNextButtons {
         width: 3.5em;
         padding: 3px;
         margin: 7px 2px;
@@ -366,8 +355,7 @@
         color: #dac7c7;
     }
     
-    #next:hover,
-    #prev:hover {
+    .prevNextButtons:hover {
         background-color: #333;
         color: #866a6a;
     }

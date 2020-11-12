@@ -321,7 +321,7 @@ let nysida = (param) => {
 
 
 nysida(0);
-
+fetcher(url, createRandomBeer);
 
 
 
