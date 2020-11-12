@@ -149,3 +149,21 @@ function render(data) {
 } */
 
 
+/*
+    let today = new Date();
+    today.getFullYear();
+    today.getMonth();
+
+    let datestring=today.getFullYear()+"-"+today.getMonth()+"-"+today.getDay();
+
+    alert(datestring);
+
+    */
+
+
+    /*
+       let lElement = document.createElement("label");
+    formElement.appendChild(lElement);
+    lElement.htmlFor = "beerSearch";
+
+    */

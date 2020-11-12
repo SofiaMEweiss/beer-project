@@ -12,6 +12,9 @@ let pageSize = 10;
 let alco_min=3;
 let alco_max=68;
 
+let today = new Date();
+let startyear=1989;
+
 
 //göm/visa prev+next-knappar:
 let showHide = (mode, cls, no) => {
@@ -23,25 +26,26 @@ let showHide = (mode, cls, no) => {
 //skapar prev+next knappar:
 let createButtons = (contElement) => {
 
-    let button = [];
+    let pgbutton = [];
     for (let i=0;i<2;i++) {
-        button[i] = document.createElement("button");
-        contElement.appendChild(button[i]);
-        button[i].type = "button";
-        button[i].className = "display-none";
-        button[i].name = "button";
+        pgbutton[i] = document.createElement("button");
+        contElement.appendChild(pgbutton[i]);
+        pgbutton[i].type = "button";
+        pgbutton[i].className = "display-none";
+        pgbutton[i].name = "button";
 
-        button[i].id = "prev";
-        button[i].textContent = "Prev";
+        pgbutton[i].id = "prev";
+        pgbutton[i].textContent = "Prev";
         if (i == 1) {
-            button[i].id = "next";
-            button[i].textContent = "Next";
+            pgbutton[i].id = "next";
+            pgbutton[i].textContent = "Next";
         }
     }
 
-    return button;
+    return pgbutton;
 
 }
+
 
 
 //skapar elementen för söksidan:
@@ -54,9 +58,10 @@ let initSearch = () => {
     const formElement = document.createElement("form");
     contElement.appendChild(formElement);
 
-    const lElement = document.createElement("label");
-    formElement.appendChild(lElement);
-    lElement.htmlFor = "beerSearch";
+    const errElement=document.createElement("span");
+    formElement.appendChild(errElement);
+    errElement.className="errorfield";
+    errElement.style.opacity=0;
 
     const iElement = document.createElement("input");
     formElement.appendChild(iElement);
@@ -86,7 +91,7 @@ let initSearch = () => {
     alkWrapper.className="alcoholfield";
     alkWrapper.textContent="%:";
 
-    const abvElement = [];
+    let abvElement = [];
     for (let i=0;i<2;i++) {
     abvElement[i] = document.createElement("input");
     alkWrapper.appendChild(abvElement[i]);
@@ -102,7 +107,44 @@ let initSearch = () => {
     }
 
 
-    //slut element för alkohalt
+    //element för datum år:
+
+    const dateWrapper=document.createElement("span");
+    formElement.appendChild(dateWrapper);
+    dateWrapper.className="alcoholfield";
+    dateWrapper.textContent="Date:";
+
+    let yearElement = [];
+    let monthElement = [];
+    for (let i=0;i<2;i++) {
+    yearElement[i] = document.createElement("select");
+    monthElement[i] = document.createElement("select");
+    dateWrapper.appendChild(yearElement[i]);
+    dateWrapper.appendChild(monthElement[i]);
+    yearElement[i].name = "year"+i;
+    yearElement[i].id = "year"+i;
+    monthElement[i].name = "year"+i;
+    monthElement[i].id = "year"+i;
+        for (let j=startyear-1;j<=today.getFullYear();j++) {
+            let optElement = document.createElement("option");
+            if (j > startyear-1) {
+            optElement.value=j;
+            optElement.textContent=j;
+            }
+            yearElement[i].appendChild(optElement);
+        }
+        for (let j=0;j<=12;j++) {
+            let optElement = document.createElement("option");
+            if (j > 0) {
+            optElement.value=j;
+            optElement.textContent=j;
+            }
+            monthElement[i].appendChild(optElement);
+        }
+    }
+    
+
+
 
     const sElement=document.createElement("button");
     formElement.appendChild(sElement);
@@ -110,16 +152,11 @@ let initSearch = () => {
     sElement.id="searchButton";
     sElement.textContent="Search";
 
-    const errElement=document.createElement("span");
-    formElement.appendChild(errElement);
-    errElement.className="errorfield";
-    errElement.style.opacity=0;
-
     const sectElement=document.createElement("section");
     contElement.appendChild(sectElement);
     sectElement.className="searchList";
 
-    button=createButtons(contElement);
+    pgbutton=createButtons(contElement);
 
 
     //block/none, class
@@ -129,10 +166,12 @@ let initSearch = () => {
     //const buttonNext = document.querySelector('#next');
     //const buttonPrev = document.querySelector('#prev');
 
-    sElement.addEventListener('click', function() { onSubmit(iElement, errElement, hopsElement, maltElement, abvElement[0], abvElement[1]) });
+    sElement.addEventListener('click', function() {
+        onSubmit(iElement, errElement, hopsElement, maltElement, abvElement[0], abvElement[1], yearElement[0], yearElement[1], monthElement[0], monthElement[1])
+    });
 
-    button[1].addEventListener('click', function() { getNewPage(true); });
-    button[0].addEventListener('click', function() { getNewPage(false); });
+    pgbutton[1].addEventListener('click', function() { getNewPage(true); });
+    pgbutton[0].addEventListener('click', function() { getNewPage(false); });
 
 }
 
@@ -145,7 +184,7 @@ let check_underscore = (str) => {
 }
 
 //form submit:
-let onSubmit = (e, efield, hfield, mfield, abv_gt, abv_lt) => {
+let onSubmit = (e, efield, hfield, mfield, abv_gt, abv_lt, year_one, year_two, month_one, month_two) => {
 
     searchStr = e.value; //.target[0].value
     page = 1;
@@ -240,11 +279,21 @@ let renderFirstBeer = (data) => {
 
 //validerar formulärets input innan den skickar vidare:
 let validateForm = (url, e, efield, hfield, mfield, abv_gt, abv_lt) => {
-    //lägg till check för special characters
-    let passed = true;
 
     let mess="";
     efield.style.opacity=0;
+
+    //LÄGG TILL CHECK FÖR IFALL SAMTLIGA FÄLT ÄR BLANKA!
+
+
+    let g1 = new Date(2020, 07);
+    let g2 = new Date(2020, 08);
+    if (g1.getTime() < g2.getTime()) {alert("g1 is lesser than g2");}
+    else if (g1.getTime() > g2.getTime()) {alert("g1 is greater than g2");}
+    else {alert("both are equal");}
+
+
+
 
     //Effektivisera koden nedan med externa funktioner!
 
@@ -253,13 +302,11 @@ let validateForm = (url, e, efield, hfield, mfield, abv_gt, abv_lt) => {
         abv_check[i].className="none";
         if (abv_check[i].value.length > 0) {
             if ((abv_check[i].value < alco_min) || (abv_check[i].value > alco_max)) {
-                passed=false;
-                mess+=`Input måste vara ${alco_min} - ${alco_max} `;
+                mess+=`Input måste vara ${alco_min} - ${alco_max}.`;
                 abv_check[i].className="formError";
             }
         }
         if ((abv_check[0].value == abv_check[1].value) && (abv_check[0].value.length > 0)) {
-            passed=false;
             mess+="Input får inte vara samma.\r";
             abv_check[i].className="formError";
         }
@@ -267,8 +314,6 @@ let validateForm = (url, e, efield, hfield, mfield, abv_gt, abv_lt) => {
     }
 
     if (abv_gt.value > abv_lt.value) {
-        //alert(abv_gt.value+" is bigger than "+abv_lt.value);
-        passed=false;
         mess+="gt får inte vara större än lt.\r";
         abv_check[0].className="formError";
         abv_check[1].className="formError";
@@ -276,8 +321,8 @@ let validateForm = (url, e, efield, hfield, mfield, abv_gt, abv_lt) => {
 
     //if (e.value.length <= 0) {passed=false;mess+="Sökrutan får inte vara tom! \r test";e.className="formError";}
 
-    if (passed) {fetcher(url, renderFirstBeer);}
     if (mess.length > 0) {efield.style.opacity=1;}
+    else {fetcher(url, renderFirstBeer);}
     efield.textContent = mess;
 
 }
