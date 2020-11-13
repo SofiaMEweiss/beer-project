@@ -35,6 +35,10 @@ const url = "https://api.punkapi.com/v2/beers/random";
 const eMain = document.querySelector("main");
 const noPic = "img/beer_without_image.png";
 
+let randomBeer_saved = [];
+let searchBeer_saved = [];
+let searchVal=0;
+
 //Skapar upp elementen för knapp & card. Initieras i slutet av denna js-fil.
 let initRandom = () => {
     const sectElement = createNewElement("section", eMain, { class: 'indexRandomBeerSection' }, "");
@@ -64,6 +68,7 @@ let displayRandomBeer = (beerName, beerImage, beerId) => {
 
 //hit kommer vi när API-datan kommit
 let createRandomBeer = (data) => {
+    randomBeer_saved=data;
     let beer = data[0].name;
     let beerpic = data[0].image_url;
     let beerId = data[0].id;
@@ -75,7 +80,15 @@ let createRandomBeer = (data) => {
 
 //Skapar DOM-element och information för specifik öl-produkt:
 let showProduct = (beerId) => {
-    fetcher("https://api.punkapi.com/v2/beers/" + beerId, showProduct2);
+    if (page == 0) {
+        if (randomBeer_saved.length > 0) {showProduct2(randomBeer_saved);}
+        else {fetcher("https://api.punkapi.com/v2/beers/" + beerId, showProduct2);}
+    }
+    else {
+        if (searchBeer_saved.length[searchVal] > 0) {showProduct2(searchBeer_saved[searchVal]);}
+        else {fetcher("https://api.punkapi.com/v2/beers/" + beerId, showProduct2);}
+    }
+    
 }
 
 let showProduct2 = (beerId) => {
@@ -168,6 +181,8 @@ let nysida = (param) => {
         switch (param) {
             case 0:
                 initRandom();
+                //console.log(randomBeer_saved);
+                if (randomBeer_saved.length > 0) {createRandomBeer(randomBeer_saved);}
                 break;
             case 1:
                 initSearch();

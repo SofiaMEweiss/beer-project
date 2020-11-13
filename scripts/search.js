@@ -194,6 +194,7 @@ let getNewPage = (e) => {
 
 
 let renderFirstBeer = (data) => {
+    searchBeer_saved=data;
 
     let sElement = document.querySelector(".searchList");
     //mainElement.appendChild(sElement);
@@ -213,6 +214,7 @@ let renderFirstBeer = (data) => {
 
         pElement.addEventListener('click', () => {
             nysida(3);
+            searchVal=i;
             showProduct(data[i].id);
         });
     }
