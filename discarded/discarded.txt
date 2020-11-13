@@ -518,3 +518,13 @@ function initSearch() {
 }
 
 */
+
+
+        <!--
+        <section id="indexSearchSection">
+
+            <div class="showbeer"></div>
+            <button type="button" id='button' name="button">Klick</button>
+
+        </section>
+        -->

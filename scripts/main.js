@@ -179,7 +179,7 @@ let extractData = (to_get, to_add, classt) => {
 
 //skapar element för att spara kod åt oss:
 
-function createNewElement(type, parentElement, attributes, txtcont) {
+let createNewElement = (type, parentElement, attributes, txtcont) => {
     const createdElement = document.createElement(type);
     parentElement.appendChild(createdElement);
     if (txtcont.length > 0) {createdElement.textContent=txtcont;}
