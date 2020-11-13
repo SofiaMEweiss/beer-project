@@ -1,7 +1,7 @@
-    /************************** 
+/************************** 
     ******Desktop version****** 
     **************************/
-    
+
     * {
         box-sizing: border-box;
         margin: 0;
@@ -13,9 +13,11 @@
         font-family: sans-serif;
         font-size: 14px;
     }
+    
+    
     /************************** 
-    ************Nav************ 
-    **************************/
+        ************Nav************ 
+        **************************/
     
     nav {
         display: flex;
@@ -65,17 +67,21 @@
         margin: 0 0 0 6px;
         font-size: 1.6rem;
     }
+    
+    
     /************************** 
-    ***********Main************ 
-    **************************/
+        ***********Main************ 
+        **************************/
     
     main {
         display: flex;
         justify-content: center;
     }
+    
+    
     /************************** 
-    *****Random beer page****** 
-    **************************/
+        *****Random beer page****** 
+        **************************/
     
     .indexRandomBeerSection {
         display: flex;
@@ -154,9 +160,11 @@
     .seeMoreLink:after {
         content: " \22B3";
     }
+    
+    
     /************************** 
-    ******Beer info page******* 
-    **************************/
+        ******Beer info page******* 
+        **************************/
     
     .indexInfoBeerSection {
         display: inline-block;
@@ -221,9 +229,11 @@
         font-style: italic;
         font-weight: normal;
     }
+    
+    
     /************************** 
-    ****** Search page  ******* 
-    **************************/
+        ****** Search page  ******* 
+        **************************/
     
     .formcontainer {
         width: 80%;
@@ -314,11 +324,11 @@
         border-radius: 5px;
         border: 2px solid #FF0000;
         transition: transform .2s;
-        min-width:300px;
+        min-width: 300px;
     }
-
-    .errorfield > ul {
-        padding-left:15px;
+    
+    .errorfield>ul {
+        padding-left: 15px;
     }
     
     .errorfield:hover {
@@ -371,14 +381,16 @@
         background-color: #333;
         color: #866a6a;
     }
+    
+    
     /************************** 
-    ******Mobile version******* 
-    **************************/
+        ******Mobile version******* 
+        **************************/
     
     @media(max-width: 800px) {
         /************************** 
-    ***********Nav************ 
-    **************************/
+        ***********Nav************ 
+        **************************/
         .mainMenu {
             height: 100vh;
             position: fixed;
@@ -412,8 +424,8 @@
             padding: 12px;
         }
         /************************** 
-    ******Beer info page******* 
-    **************************/
+        ******Beer info page******* 
+        **************************/
         .beerInfoContainer {
             min-height: auto;
         }
@@ -421,8 +433,8 @@
             margin-bottom: 10px;
         }
         /************************** 
-    ****** Search page  ******* 
-    **************************/
+        ****** Search page  ******* 
+        **************************/
         form {
             margin-bottom: 40px;
         }
