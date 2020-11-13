@@ -48,23 +48,11 @@ let createButtons = (contElement) => {
 
 
 
-//skapar element för att spara kod åt oss:
 
-function createNewElement(type, parentElement, attributes, txtcont) {
-    const createdElement = document.createElement(type);
-    parentElement.appendChild(createdElement);
-    if (txtcont.length > 0) {createdElement.textContent=txtcont;}
-    for (key in attributes) {
-        createdElement.setAttribute(key, attributes[key]);
-    }
-    return createdElement;
-
-}
 
 
 //skapar elementen för söksidan:
 let initSearch = () => {
-
 
     //typ av element, parent element, attribut (klasser, id, etc.), textContent:
 
@@ -92,20 +80,15 @@ let initSearch = () => {
 
 
     //element för datum år:
-    const dateWrapper = createNewElement("span", formElement, {class: 'alcoholfield'}, "After");
+    const dateWrapper = createNewElement("span", formElement, {class: 'alcoholfield'}, "From");
 
 
     let yearElement = [];
     let monthElement = [];
     for (let i=0;i<2;i++) {
-    yearElement[i] = document.createElement("select");
-    monthElement[i] = document.createElement("select");
-    dateWrapper.appendChild(yearElement[i]);
-    dateWrapper.appendChild(monthElement[i]);
-    yearElement[i].name = "year"+i;
-    yearElement[i].id = "year"+i;
-    monthElement[i].name = "year"+i;
-    monthElement[i].id = "year"+i;
+        if (i == 1) {const dateBefore = createNewElement("span", dateWrapper, {}, "To");}
+        yearElement[i] = createNewElement("select", dateWrapper, {name: 'year'+i, id: 'year'+i}, "");
+        monthElement[i] = createNewElement("select", dateWrapper, {name: 'month'+i, id: 'month'+i}, "");
         for (let j=startyear-1;j<=today.getFullYear();j++) {
             let optElement = document.createElement("option");
             if (j > startyear-1) {
@@ -249,9 +232,22 @@ let renderFirstBeer = (data) => {
 
 
 
+let allLetter = (inputtxt) => {
+    let letters = /^[A-Za-z]+$/;
+    if (inputtxt.value.match(letters)) {
+        return true;
+    } else {
+        inputtxt.className="formError";
+        return false;
+    }
+}
+
+
 //validerar formulärets input innan den skickar vidare:
 let validateForm = (url, e, efield, hfield, mfield, abv_gt, abv_lt, year_one, year_two, month_one, month_two) => {
 
+    hfield.className="none";
+    mfield.className="none";
     let mess="";
     efield.style.opacity=0;
 
@@ -259,8 +255,12 @@ let validateForm = (url, e, efield, hfield, mfield, abv_gt, abv_lt, year_one, ye
     let datelengths=year_one.value.length+year_two.value.length+month_one.value.length+month_two.value.length;
     let formSum=e.value.length+hfield.value.length+mfield.value.length+abv_lt.value.length+abv_gt.value.length+datelengths;
     if (formSum <= 0) {
-        mess+="Minst ett av fälten måste fyllas i.\r";
+        mess+="Minst ett av fälten måste fyllas i. ";
     }
+
+    if (! allLetter(hfield) && hfield.value.length > 0) {mess+="Endast bokstäver. ";}
+
+    if (! allLetter(mfield) && mfield.value.length > 0) {mess+="Endast bokstäver. ";}
 
 
     let g1 = new Date(year_one.value, month_one.value);
@@ -274,26 +274,29 @@ let validateForm = (url, e, efield, hfield, mfield, abv_gt, abv_lt, year_one, ye
 
     //Effektivisera koden nedan med externa funktioner!
 
+
     let abv_check = [abv_gt, abv_lt];
+    let wrong_in = [false, false];
     for (let i=0;i<abv_check.length;i++) {
         abv_check[i].className="none";
         if (abv_check[i].value.length > 0) {
-            if ((abv_check[i].value < alco_min) || (abv_check[i].value > alco_max)) {
-                mess+=`Input måste vara ${alco_min} - ${alco_max}.`;
+            if (abv_check[i].value < alco_min || abv_check[i].value > alco_max) {
+                wrong_in[0]=true;
                 abv_check[i].className="formError";
             }
         }
-        if ((abv_check[0].value == abv_check[1].value) && (abv_check[0].value.length > 0)) {
-            mess+="Input får inte vara samma.\r";
+        if (abv_check[0].value == abv_check[1].value && abv_check[0].value.length > 0) {
+            wrong_in[1]=true;
             abv_check[i].className="formError";
         }
-
     }
-    if (abv_gt.value > abv_lt.value) {
-        mess+="gt får inte vara större än lt.\r";
-        abv_check[0].className="formError";
-        abv_check[1].className="formError";
-    }
+            if (wrong_in[0]) {mess+=`% måste vara ${alco_min}-${alco_max}. `;}
+            if (wrong_in[1]) {mess+="% får inte vara samma. ";}
+            if (parseFloat(abv_gt.value) > parseFloat(abv_lt.value)) {
+            mess+="gt får inte vara större än lt. ";
+            abv_check[0].className="formError";
+            abv_check[1].className="formError";
+            }
 
     //if (e.value.length <= 0) {passed=false;mess+="Sökrutan får inte vara tom! \r test";e.className="formError";}
 

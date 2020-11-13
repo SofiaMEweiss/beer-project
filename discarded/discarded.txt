@@ -1,0 +1,520 @@
+//SEARCH.JS
+
+
+//fetching data from API
+/*
+function fetchData(url, callback) {
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            callback(data);
+
+            
+            if(data.length == pageSize)
+            {
+                lastPage = false;
+                document.getElementById("next").disabled = false;
+            }
+            else
+            {   
+                lastPage = true;
+                document.getElementById("next").disabled = true;
+            }
+            
+
+        }).catch(error => console.log(error));
+
+}
+*/
+
+
+/*
+function getNext(e) {
+
+    //console.log("Next page");
+
+    page++;
+
+    if(page > 1)
+    {
+        document.getElementById("prev").disabled = false;
+    }
+
+    const url = `${API}?beer_name=${searchStr}&per_page=${pageSize}&page=${page}`;
+
+    fetcher(url, renderFirstBeer);
+
+    e.preventDefault();
+}
+
+
+function getPrev(e) {
+
+    if(page == 1)
+    {
+
+        document.getElementById("prev").disabled = true;
+    }
+    else
+    {
+        //console.log("Go to prev page");
+
+        page--;
+
+        const url = `${API}?beer_name=${searchStr}&per_page=${pageSize}&page=${page}`;
+
+        fetcher(url, renderFirstBeer);
+
+        e.preventDefault();  
+
+        //console.log(url);
+    }
+
+}
+*/
+
+
+
+/*
+function render(data) {
+    const ulElement = document.createElement('ul');
+
+    console.log("result count", data.length);
+
+    for (let i = 0; i < data.length; i++) {
+
+        const beer = data[i];
+
+        const liElement = document.createElement('li');
+        liElement.textContent = beer.name;
+        ulElement.appendChild(liElement);
+    }
+    mainElement.appendChild(ulElement);
+   
+}
+*/
+
+
+
+
+
+
+
+
+
+
+    /* CSS added by Cengiz */
+    /* .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        width: 45%;
+        height: auto;
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 15px;
+        background: white;
+        border-radius: 7px;
+    }
+    
+    .card ul {
+        list-style: none;
+    }
+    
+    .card ul li {
+        margin: 5px 0;
+    }
+    
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .card-container {
+        padding: 2px 16px;
+    } */
+    /* .seeMoreLink {
+    text-decoration: none;
+    padding: 7px 10px;
+    background: white;
+    color: #444;
+    margin: 11px 0 17px 0;
+    display: inline-block;
+}
+
+.seeMoreLink:hover,
+.seeMoreLink:focus {
+    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    transform: translateY(-0.25em);
+} */
+
+
+/*
+    let today = new Date();
+    today.getFullYear();
+    today.getMonth();
+
+    let datestring=today.getFullYear()+"-"+today.getMonth()+"-"+today.getDay();
+
+    alert(datestring);
+
+    */
+
+
+    /*
+       let lElement = document.createElement("label");
+    formElement.appendChild(lElement);
+    lElement.htmlFor = "beerSearch";
+
+    */
+
+
+
+
+
+
+
+
+
+
+    
+        /*init search.js
+
+
+    const contElement = document.createElement("article");
+    mainElement.appendChild(contElement);
+    contElement.className = "formcontainer";
+
+    const formElement = document.createElement("form");
+    contElement.appendChild(formElement);
+    
+
+    const errElement=document.createElement("span");
+    formElement.appendChild(errElement);
+    errElement.className="errorfield";
+    errElement.style.opacity=0;
+    
+
+    const iElement = document.createElement("input");
+    formElement.appendChild(iElement);
+    iElement.type = "text";
+    iElement.placeholder = "Search for beer...🍺";
+    iElement.name = "beerSearch";
+    iElement.setAttribute('maxLength', 50);
+
+
+        const hopsElement = document.createElement("input");
+    formElement.appendChild(hopsElement);
+    hopsElement.type = "text";
+    hopsElement.placeholder = "Search for hop...";
+    hopsElement.name = "hopSearch";
+    hopsElement.setAttribute('maxLength', 40);
+
+        const maltElement = document.createElement("input");
+    formElement.appendChild(maltElement);
+    maltElement.type = "text";
+    maltElement.placeholder = "Search for malt...";
+    maltElement.name = "maltSearch";
+    maltElement.setAttribute('maxLength', 40);
+
+
+        const alkWrapper=document.createElement("span");
+    formElement.appendChild(alkWrapper);
+    alkWrapper.className="alcoholfield";
+    alkWrapper.textContent="%:";
+
+
+
+    let abvElement = [];
+    for (let i=0;i<2;i++) {
+    abvElement[i] = document.createElement("input");
+    alkWrapper.appendChild(abvElement[i]);
+    abvElement[i].type = "number";
+    abvElement[i].placeholder = "greater than...";
+    abvElement[i].name = "abv_gtSearch";
+    if (i == 1) {abvElement[i].name = "abv_ltSearch";abvElement[i].placeholder = "lesser than...";}
+    abvElement[i].setAttribute('maxLength', 3);
+    abvElement[i].setAttribute('step', 0.1);
+    abvElement[i].setAttribute('max', alco_max);
+    abvElement[i].setAttribute('min', alco_min);
+    //abvElement.setAttribute('size', 8);
+    }
+
+
+
+        const dateWrapper=document.createElement("span");
+    formElement.appendChild(dateWrapper);
+    dateWrapper.className="alcoholfield";
+    dateWrapper.textContent="After:";
+
+
+
+
+    const sElement=document.createElement("button");
+    formElement.appendChild(sElement);
+    sElement.type="button";
+    sElement.id="searchButton";
+    sElement.textContent="Search";
+
+
+        const sectElement=document.createElement("section");
+    contElement.appendChild(sectElement);
+    sectElement.className="searchList";
+
+    */
+
+
+//renderFIrstBeer for loop:
+
+            //const ppElement = document.createElement("p");
+        //sElement.appendChild(ppElement);
+
+        //const pElement = document.createElement("p");
+        //pElement.setAttribute("name", value = data[i].id);
+        //pElement.className = "searchItem";
+        //ppElement.appendChild(pElement);
+
+        //pElement.textContent = data[i].name;
+
+
+
+
+
+
+
+            //yearElement[i] = document.createElement("select");
+    //dateWrapper.appendChild(yearElement[i]);
+    //yearElement[i].name = "year"+i;
+    //yearElement[i].id = "year"+i;
+    //monthElement[i] = document.createElement("select");
+    //dateWrapper.appendChild(monthElement[i]);
+    //monthElement[i].name = "month"+i;
+    //monthElement[i].id = "month"+i;
+
+
+
+
+
+
+
+
+
+        /*
+    const sectElement = document.createElement("section");
+    sectElement.className = "indexRandomBeerSection";
+    eMain.appendChild(sectElement);
+    
+
+    const divElement = document.createElement("div");
+    divElement.className = "showBeerContainer";
+    sectElement.appendChild(divElement);
+
+
+    const buttonElement = document.createElement("button");
+    buttonElement.textContent = "Click for a random beer";
+    buttonElement.type = "button";
+    buttonElement.id = "button";
+    buttonElement.name = "button";
+    sectElement.appendChild(buttonElement);
+    */
+
+
+
+
+
+        //const sectionElement = document.createElement("section")
+    //sectionElement.className = "beercard";
+
+    //const h2Element = document.createElement("h2");
+
+    //const imgElement = document.createElement("img");
+    //imgElement.src = beerImage;
+    //imgElement.alt = "A random beer";
+
+    //const aElement = document.createElement("a");
+
+    //let textNode = document.createTextNode(beerName);
+    //let linkNode = document.createTextNode("See More");
+    //aElement.appendChild(linkNode);
+    //aElement.className = "seeMoreLink";
+
+
+    //aElement.href = "info.html?name=" + beerId;
+    //aElement.href = "#";
+
+    
+
+    //divElement.appendChild(sectionElement);
+    //sectionElement.appendChild(h2Element);
+    //h2Element.appendChild(textNode);
+    //sectionElement.appendChild(imgElement);
+    //sectionElement.appendChild(aElement);
+
+
+
+
+
+        //console.log(beerId);
+
+    //används den här variabeln här??
+    //let main = document.querySelector("main");
+
+    /*
+    let card = document.createElement("div");
+    main.appendChild(card);
+    card.className = "card";
+
+    let imgElement = document.createElement("img");
+    imgElement.className = "showimg";
+    imgElement.alt = "bild:";
+    imgElement.src = noPic;
+    if (beerId[0].image_url != null) {
+        imgElement.src = beerId[0].image_url;
+    }
+    card.appendChild(imgElement);
+    */
+
+
+
+    /*
+    let cardContainer = document.createElement("div");
+    cardContainer.className = "card-container";
+
+    let infoElement = document.createElement("ul");
+    infoElement.className = "showinfo";
+    */
+
+
+
+
+
+
+
+    
+    /*
+    let eContainer = document.createElement("section");
+    eContainer.className = "indexInfoBeerSection";
+    eMain.appendChild(eContainer);
+
+    let eContainer2 = document.createElement("div");
+    eContainer.appendChild(eContainer2);
+    eContainer2.className = "beerImgContainer";
+
+    let hElement = document.createElement("h2");
+    eContainer2.appendChild(hElement);
+    hElement.textContent = beerId[0].name;
+
+
+    let eContainer3 = document.createElement("article");
+    eContainer.appendChild(eContainer3);
+    eContainer3.className = "beerInfoContainer";
+    
+
+    let imgElement = document.createElement("img");
+    eContainer2.appendChild(imgElement);
+    imgElement.className = "showimg";
+    imgElement.alt = "Picture of bottle";
+    imgElement.src = noPic;
+    */
+
+
+    //let infoElement = document.createElement("ul");
+    //eContainer3.appendChild(infoElement);
+    //Denna klass används inte, vi behöver kanske inte skapa en klass utan bara elementet?
+    //infoElement.className = "showinfo";
+
+
+   // console.log(beerId[0]);
+
+    /*
+    malt_get.forEach(element => {
+        console.log(element);
+        let myString=" "+element.name+" ("+element.amount.value+" "+element.amount.unit+")";
+        malt_add.push(myString);
+    });
+    */
+
+
+    //const hops = beerId[0].ingredients.hops;
+    //console.log(malt);
+
+    //array1.forEach(element => console.log(element));
+
+
+
+
+
+
+            //let optElement = document.createElement("li");
+        //optElement.className = "showBeerOptions";
+        //optElement.textContent = infoData[i].desc + ": ";
+        //infoElement.appendChild(optElement);
+        //let hElement = document.createElement("span");
+        //optElement.appendChild(hElement);
+        //hElement.className = "beerInfo";
+        //hElement.textContent = infoData[i].val;
+
+        //Ej style i js eller hur?
+        //hElement.style.color = "rgb(54, 52, 52);";
+
+
+
+
+
+
+
+
+        
+
+//TA BORT SEN!
+
+/*
+
+const mainElement = document.querySelector("main");
+
+
+function initSearch() {
+    const formElement = document.createElement("form");
+    mainElement.appendChild(formElement);
+
+    const lElement = document.createElement("label");
+    formElement.appendChild(lElement);
+    lElement.htmlFor="beerSearch";
+
+    const iElement = document.createElement("input");
+    formElement.appendChild(iElement);
+    iElement.type="text";
+    iElement.placeholder="Search for beer...🍺";
+    iElement.name="beerSearch";
+
+    const sElement = document.createElement("button");
+    formElement.appendChild(sElement);
+    sElement.type="button";
+    sElement.id="searchButton";
+    sElement.textContent="Search";
+
+    const sectElement = document.createElement("section");
+    mainElement.appendChild(sectElement);
+    sectElement.className="searchList";
+
+    let button = [];
+    for (let i=0;i<2;i++) {
+    button[i] = document.createElement("button");
+    mainElement.appendChild(button[i]);
+    button[i].type="button";
+    button[i].className="display-none";
+    button[i].name="button";
+
+    button[i].id="prev";
+    button[i].textContent="Prev";
+        if (i == 1) {
+            button[i].id="next";
+            button[i].textContent="Next";
+        }
+    }
+
+    sElement.addEventListener('click', function() {onSubmit(iElement.value)});
+
+}
+
+*/
