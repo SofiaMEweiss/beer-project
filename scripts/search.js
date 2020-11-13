@@ -19,7 +19,7 @@ let startyear=2005;
 //göm/visa prev+next-knappar:
 let showHide = (mode, cls, no) => {
     const myElement = document.querySelectorAll(cls);
-        myElement[no].style.opacity=mode;
+    myElement[no].style.opacity=mode;
 }
 
 
@@ -28,18 +28,14 @@ let createButtons = (contElement) => {
 
     let pgbutton = [];
     for (let i=0;i<2;i++) {
-        pgbutton[i] = document.createElement("button");
-        contElement.appendChild(pgbutton[i]);
-        pgbutton[i].type = "button";
-        pgbutton[i].className = "prevNextButtons";
-        pgbutton[i].name = "button";
-
+        pgbutton[i] = createNewElement("button", contElement, {type: 'button', class: 'prevNextButtons', name: "button"}, "");
         pgbutton[i].id = "prev";
         pgbutton[i].textContent = "Prev";
         if (i == 1) {
             pgbutton[i].id = "next";
             pgbutton[i].textContent = "Next";
         }
+
     }
 
     return pgbutton;
@@ -86,9 +82,11 @@ let initSearch = () => {
     let yearElement = [];
     let monthElement = [];
     for (let i=0;i<2;i++) {
+
         if (i == 1) {const dateBefore = createNewElement("span", dateWrapper, {}, "To");}
         yearElement[i] = createNewElement("select", dateWrapper, {name: 'year'+i, id: 'year'+i}, "");
         monthElement[i] = createNewElement("select", dateWrapper, {name: 'month'+i, id: 'month'+i}, "");
+
         for (let j=startyear-1;j<=today.getFullYear();j++) {
             let optElement = document.createElement("option");
             if (j > startyear-1) {
@@ -97,6 +95,7 @@ let initSearch = () => {
             }
             yearElement[i].appendChild(optElement);
         }
+
         for (let j=0;j<=12;j++) {
             let optElement = document.createElement("option");
             if (j > 0) {
@@ -111,7 +110,6 @@ let initSearch = () => {
     const sElement = createNewElement("button", formElement, {type: 'button', id: 'searchButton'}, "Search");
 
     const sectElement = createNewElement("section", contElement, {class: 'searchList'}, "");
-
 
     pgbutton=createButtons(contElement);
 
@@ -129,6 +127,11 @@ let initSearch = () => {
 
     pgbutton[1].addEventListener('click', function() { getNewPage(true); });
     pgbutton[0].addEventListener('click', function() { getNewPage(false); });
+
+    //laddar in sparade sökresultat
+    page=search_pages_saved;
+    if (firstSearch) {firstSearch=false;}
+    else {renderFirstBeer(searchBeer_saved[page]);}
 
 }
 
@@ -160,7 +163,7 @@ let onSubmit = (e, efield, hfield, mfield, abv_gt, abv_lt, year_one, year_two, m
 
 
     globalURL=url;
-    alert(API+pageStr+globalURL);
+    //alert(API+pageStr+globalURL);
 
     //const url = `${API}?beer_name=${e.value}&per_page=${pageSize}&page=${page}`;
     //const url = `${API}?per_page=${pageSize}&page=${page}&beer_name=${e.value}`;
@@ -186,7 +189,19 @@ let getNewPage = (e) => {
     //const url = `${API}beer_name=${searchStr}&per_page=${pageSize}&page=${page}`;
     pageStr="per_page=" + pageSize + "&page="+page;
 
-    fetcher(API+pageStr+globalURL, renderFirstBeer);
+    //console.log(searchBeer_saved[page-1]);
+    if (e) {
+        if (page <= search_pages_saved) {
+            renderFirstBeer(searchBeer_saved[page]);
+        }
+        else {
+            search_pages_saved=page;
+            fetcher(API+pageStr+globalURL, renderFirstBeer);
+        }
+    }
+    else {
+        renderFirstBeer(searchBeer_saved[page]);
+    }
 
     //e.preventDefault();
 }
@@ -194,7 +209,12 @@ let getNewPage = (e) => {
 
 
 let renderFirstBeer = (data) => {
-    searchBeer_saved=data;
+    //console.log(data);
+    searchBeer_saved[page]=data;
+    //console.log(searchBeer_saved);
+
+    //console.log(data[0].name);
+    //console.log(searchBeer_saved[0].name);
 
     let sElement = document.querySelector(".searchList");
     //mainElement.appendChild(sElement);
@@ -213,11 +233,14 @@ let renderFirstBeer = (data) => {
         const pElement = createNewElement("p", ppElement, {class: 'searchItem', name: data[i].id}, data[i].name);
 
         pElement.addEventListener('click', () => {
+            search_pages_saved=page;
             nysida(3);
             searchVal=i;
+            page_saved=1;
             showProduct(data[i].id);
         });
     }
+
 
     if (data.length == pageSize) {
         lastPage = false;
@@ -239,42 +262,60 @@ let allLetter = (inputtxt) => {
     if (inputtxt.value.match(letters)) {
         return true;
     } else {
-        inputtxt.className="formError";
         return false;
     }
+}
+
+
+let emptyFields = (param) => {
+    if (param <= 0) {
+        return true;
+    }
+    return false;
+}
+
+
+let compareDates = (year_one, month_one, year_two, month_two) => {
+    let g1 = new Date(year_one.value, month_one.value);
+    let g2 = new Date(year_two.value, month_two.value);
+    if (g1.getTime() < g2.getTime()) {return true;}
+    else {return false;}
+    //if (g1.getTime() < g2.getTime()) {alert("g1 is lesser than g2");}
+    //else if (g1.getTime() > g2.getTime()) {alert("g1 is greater than g2");} //err
+    //else {if (datelengths > 0) {alert("both are equal");}} //err
 }
 
 
 //validerar formulärets input innan den skickar vidare:
 let validateForm = (url, e, efield, hfield, mfield, abv_gt, abv_lt, year_one, year_two, month_one, month_two) => {
 
-    hfield.className="none";
-    mfield.className="none";
-    let mess="";
     efield.style.opacity=0;
+
+    removeAllChildNodes(efield);
+    const eWarnList = createNewElement("ul", efield, {}, "");
+
 
     //LÄGG TILL CHECK FÖR IFALL SAMTLIGA FÄLT ÄR BLANKA!
     let datelengths=year_one.value.length+year_two.value.length+month_one.value.length+month_two.value.length;
-    let formSum=e.value.length+hfield.value.length+mfield.value.length+abv_lt.value.length+abv_gt.value.length+datelengths;
-    if (formSum <= 0) {
-        mess+="Minst ett av fälten måste fyllas i. ";
+    if (emptyFields(e.value.length+hfield.value.length+mfield.value.length+abv_lt.value.length+abv_gt.value.length+datelengths)) {
+        createNewElement("li", eWarnList, {}, "Minst ett av fälten måste fyllas i.");
     }
 
-    if (! allLetter(hfield) && hfield.value.length > 0) {mess+="Endast bokstäver. ";}
 
-    if (! allLetter(mfield) && mfield.value.length > 0) {mess+="Endast bokstäver. ";}
+    if (! allLetter(hfield) && hfield.value.length > 0) {
+        createNewElement("li", eWarnList, {}, "Hop: Endast bokstäver.");
+    }
+    if (! allLetter(mfield) && mfield.value.length > 0) {
+        createNewElement("li", eWarnList, {}, "Malt: Endast bokstäver.");
+    }
+
+  
+    if (! compareDates(year_one, month_one, year_two, month_two)) {
+        if (datelengths > 0) {createNewElement("li", eWarnList, {}, "vänster datum måste vara lägre än höger.");}
+    }
 
 
-    let g1 = new Date(year_one.value, month_one.value);
-    let g2 = new Date(year_two.value, month_two.value);
-    if (g1.getTime() < g2.getTime()) {alert("g1 is lesser than g2");}
-    else if (g1.getTime() > g2.getTime()) {alert("g1 is greater than g2");} //err
-    else {if (datelengths > 0) {alert("both are equal");}} //err
-
-
-
-
-    //Effektivisera koden nedan med externa funktioner!
+    //Effektivisera koden nedan med externa funktioner, om vi hinner!
 
 
     let abv_check = [abv_gt, abv_lt];
@@ -292,18 +333,24 @@ let validateForm = (url, e, efield, hfield, mfield, abv_gt, abv_lt, year_one, ye
             abv_check[i].className="formError";
         }
     }
-            if (wrong_in[0]) {mess+=`% måste vara ${alco_min}-${alco_max}. `;}
-            if (wrong_in[1]) {mess+="% får inte vara samma. ";}
-            if (parseFloat(abv_gt.value) > parseFloat(abv_lt.value)) {
-            mess+="gt får inte vara större än lt. ";
-            abv_check[0].className="formError";
-            abv_check[1].className="formError";
-            }
 
-    //if (e.value.length <= 0) {passed=false;mess+="Sökrutan får inte vara tom! \r test";e.className="formError";}
 
-    if (mess.length > 0) {efield.style.opacity=1;}
-    else {fetcher(url, renderFirstBeer);}
-    efield.textContent = mess;
+    if (wrong_in[0]) {
+        createNewElement("li", eWarnList, {}, "% måste vara "+alco_min+"-"+alco_max+".");
+    }
+    if (wrong_in[1]) {
+        createNewElement("li", eWarnList, {}, "% får inte vara samma.");
+    }
+    if (parseFloat(abv_gt.value) > parseFloat(abv_lt.value)) {
+        createNewElement("li", eWarnList, {}, "gt får inte vara större än lt.");
+        abv_check[0].className="formError";
+        abv_check[1].className="formError";
+    }
+
+    let warnings = eWarnList.querySelectorAll("li");
+    if (warnings.length > 0) {efield.style.opacity=1;}
+    else {searchBeer_saved=[];search_pages_saved=0;fetcher(url, renderFirstBeer);}
 
 }
+
+

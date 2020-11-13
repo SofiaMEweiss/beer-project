@@ -528,3 +528,21 @@ function initSearch() {
 
         </section>
         -->
+
+
+
+
+                //pgbutton[i] = document.createElement("button");
+        //contElement.appendChild(pgbutton[i]);
+        //pgbutton[i].type = "button";
+        //pgbutton[i].className = "prevNextButtons";
+        //pgbutton[i].name = "button";
+        /*
+
+        pgbutton[i].id = "prev";
+        pgbutton[i].textContent = "Prev";
+        if (i == 1) {
+            pgbutton[i].id = "next";
+            pgbutton[i].textContent = "Next";
+        }
+        */

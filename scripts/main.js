@@ -31,13 +31,21 @@ for (let i = 0; i < menulink.length; i++) {
 ///////Main////////
 //////////////////
 
-const url = "https://api.punkapi.com/v2/beers/random";
+const url = "https://api.punkapi.com/v2/beers/";
+const url_random = url + "random";
 const eMain = document.querySelector("main");
 const noPic = "img/beer_without_image.png";
 
 let randomBeer_saved = [];
 let searchBeer_saved = [];
+let page_saved=1;
+let search_pages_saved=0;
+let url_saved;
 let searchVal=0;
+let firstSearch=true;
+
+
+
 
 //Skapar upp elementen för knapp & card. Initieras i slutet av denna js-fil.
 let initRandom = () => {
@@ -46,7 +54,7 @@ let initRandom = () => {
     const buttonElement = createNewElement("button", sectElement, { type: 'button', id: 'button', name: 'button' }, "Click for a random beer");
 
     buttonElement.addEventListener('click', () => {
-        fetcher(url, createRandomBeer);
+        fetcher(url_random, createRandomBeer);
     });
 }
 
@@ -62,6 +70,7 @@ let displayRandomBeer = (beerName, beerImage, beerId) => {
     //gå till produktsida (3), skapa upp element.
     aElement.addEventListener('click', () => {
         nysida(3);
+        page_saved=0;
         showProduct(beerId);
     });
 }
@@ -80,18 +89,30 @@ let createRandomBeer = (data) => {
 
 //Skapar DOM-element och information för specifik öl-produkt:
 let showProduct = (beerId) => {
-    if (page == 0) {
+    if (page_saved == 0) {
         if (randomBeer_saved.length > 0) {showProduct2(randomBeer_saved);}
-        else {fetcher("https://api.punkapi.com/v2/beers/" + beerId, showProduct2);}
+        else {fetcher(url + beerId, showProduct2);}
     }
     else {
-        if (searchBeer_saved.length[searchVal] > 0) {showProduct2(searchBeer_saved[searchVal]);}
-        else {fetcher("https://api.punkapi.com/v2/beers/" + beerId, showProduct2);}
+        //alert(searchBeer_saved[search_pages_saved][searchVal].name);
+
+        //console.log(beerId);
+        //console.log(searchBeer_saved[search_pages_saved][searchVal]);
+
+        //console.log(searchBeer_saved[search_pages_saved][searchVal]);
+        //console.log(searchBeer_saved[search_pages_saved].length);
+        //console.log(searchBeer_saved[search_pages_saved]);
+
+        //if (searchBeer_saved[search_pages_saved].length >= 10) {showProduct2(searchBeer_saved[search_pages_saved][searchVal]);}
+        //else {
+        fetcher(url + beerId, showProduct2);
+        //}
     }
     
 }
 
 let showProduct2 = (beerId) => {
+    //console.log(beerId);
     let eContainer = createNewElement("section", eMain, { class: 'indexInfoBeerSection' }, "");
     let eContainer2 = createNewElement("div", eContainer, { class: 'beerImgContainer' }, "");
     createNewElement("h2", eContainer2, {}, beerId[0].name);
@@ -176,13 +197,14 @@ let removeAllChildNodes = (parent) => {
 
 //Anropar funktioner baserat på sidnummer:
 let nysida = (param) => {
+        page_saved=param;
         removeAllChildNodes(eMain);
         close();
         switch (param) {
             case 0:
                 initRandom();
-                //console.log(randomBeer_saved);
                 if (randomBeer_saved.length > 0) {createRandomBeer(randomBeer_saved);}
+                //console.log(randomBeer_saved);
                 break;
             case 1:
                 initSearch();
