@@ -222,7 +222,6 @@
     /************************** 
     ****** Search page  ******* 
     **************************/
-    /* Förslag på klassnamn: indexSearchSection */
     
     .formcontainer {
         width: 80%;
@@ -230,7 +229,6 @@
         min-height: 70vh;
         margin-top: 100px;
         margin-bottom: 30px;
-        padding-left: 15px;
         background-color: #dac7c7;
         border: 1px solid rgb(75, 57, 57);
         border-radius: 5px;
@@ -253,7 +251,7 @@
     select {
         padding: 10px;
         margin: 5px;
-        border-radius: 10em;
+        border-radius: 20px;
         color: #333;
         font-size: 0.9rem;
     }
@@ -285,14 +283,14 @@
     }
     
     #searchButton {
-        width: 5em;
+        width: 75px;
         padding: 3px;
         margin: 4px 2px;
         background: #444;
         text-decoration: none;
         outline: none;
         border: none;
-        border-radius: 10em;
+        border-radius: 20px;
         cursor: pointer;
         color: #dac7c7;
         text-align: center;
@@ -311,7 +309,7 @@
     
     .errorfield {
         padding: 10px;
-        border-radius: 1em;
+        border-radius: 5px;
         border: 2px solid #FF0000;
         transition: transform .2s;
     }
@@ -321,10 +319,10 @@
         border: 3px solid #FF0000;
     }
     
-
     .searchList {
         min-height: 450px;
         padding-top: 40px;
+        padding-left: 15px;
         margin-top: 250px;
     }
     
@@ -335,7 +333,7 @@
         margin: 5px 0;
         background-color: #dac7c7;
         border-style: groove;
-        border-radius: 20em;
+        border-radius: 20px;
         cursor: pointer;
         color: #444;
         font-weight: bold;
@@ -350,12 +348,12 @@
     }
     
     .prevNextButtons {
-        width: 3.5em;
+        width: 60px;
         padding: 3px;
-        margin: 7px 2px;
+        margin: 7px 0px 7px 17px;
         background-color: #444;
         border: none;
-        border-radius: 10em;
+        border-radius: 20px;
         text-decoration: none;
         cursor: pointer;
         text-align: center;
