@@ -147,6 +147,8 @@
     
     .seeMoreLink:hover {
         text-decoration: underline;
+        color: #778899;
+        font-weight: bold;
     }
     
     .seeMoreLink:after {

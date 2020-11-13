@@ -130,7 +130,7 @@ let showProduct = (beerId) => {
 
 let showProduct2 = (beerId) => {
 
-    console.log(beerId);
+    //console.log(beerId);
 
     //används den här variabeln här??
     let main = document.querySelector("main");
@@ -202,7 +202,7 @@ let showProduct2 = (beerId) => {
         ferm_add = [],
         mash_add = [];
 
-    console.log(beerId[0]);
+   // console.log(beerId[0]);
 
     extractData(beerId[0].ingredients.malt, malt_add, true);
     extractData(beerId[0].ingredients.hops, hops_add, true);
@@ -258,11 +258,10 @@ let showProduct2 = (beerId) => {
 
 }
 
-
 let extractData = (to_get, to_add, classt) => {
     let myString;
     to_get.forEach(element => {
-        console.log(element);
+        //console.log(element);
         if (classt == true) {
             myString = " " + element.name + " (" + element.amount.value + " " + element.amount.unit + ")";
         } else { myString = " " + element; }
