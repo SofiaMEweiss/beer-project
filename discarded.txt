@@ -167,3 +167,111 @@ function render(data) {
     lElement.htmlFor = "beerSearch";
 
     */
+
+
+
+
+
+
+
+
+
+
+    
+        /*init search.js
+
+
+    const contElement = document.createElement("article");
+    mainElement.appendChild(contElement);
+    contElement.className = "formcontainer";
+
+    const formElement = document.createElement("form");
+    contElement.appendChild(formElement);
+    
+
+    const errElement=document.createElement("span");
+    formElement.appendChild(errElement);
+    errElement.className="errorfield";
+    errElement.style.opacity=0;
+    
+
+    const iElement = document.createElement("input");
+    formElement.appendChild(iElement);
+    iElement.type = "text";
+    iElement.placeholder = "Search for beer...🍺";
+    iElement.name = "beerSearch";
+    iElement.setAttribute('maxLength', 50);
+
+
+        const hopsElement = document.createElement("input");
+    formElement.appendChild(hopsElement);
+    hopsElement.type = "text";
+    hopsElement.placeholder = "Search for hop...";
+    hopsElement.name = "hopSearch";
+    hopsElement.setAttribute('maxLength', 40);
+
+        const maltElement = document.createElement("input");
+    formElement.appendChild(maltElement);
+    maltElement.type = "text";
+    maltElement.placeholder = "Search for malt...";
+    maltElement.name = "maltSearch";
+    maltElement.setAttribute('maxLength', 40);
+
+
+        const alkWrapper=document.createElement("span");
+    formElement.appendChild(alkWrapper);
+    alkWrapper.className="alcoholfield";
+    alkWrapper.textContent="%:";
+
+
+
+    let abvElement = [];
+    for (let i=0;i<2;i++) {
+    abvElement[i] = document.createElement("input");
+    alkWrapper.appendChild(abvElement[i]);
+    abvElement[i].type = "number";
+    abvElement[i].placeholder = "greater than...";
+    abvElement[i].name = "abv_gtSearch";
+    if (i == 1) {abvElement[i].name = "abv_ltSearch";abvElement[i].placeholder = "lesser than...";}
+    abvElement[i].setAttribute('maxLength', 3);
+    abvElement[i].setAttribute('step', 0.1);
+    abvElement[i].setAttribute('max', alco_max);
+    abvElement[i].setAttribute('min', alco_min);
+    //abvElement.setAttribute('size', 8);
+    }
+
+
+
+        const dateWrapper=document.createElement("span");
+    formElement.appendChild(dateWrapper);
+    dateWrapper.className="alcoholfield";
+    dateWrapper.textContent="After:";
+
+
+
+
+    const sElement=document.createElement("button");
+    formElement.appendChild(sElement);
+    sElement.type="button";
+    sElement.id="searchButton";
+    sElement.textContent="Search";
+
+
+        const sectElement=document.createElement("section");
+    contElement.appendChild(sectElement);
+    sectElement.className="searchList";
+
+    */
+
+
+//renderFIrstBeer for loop:
+
+            //const ppElement = document.createElement("p");
+        //sElement.appendChild(ppElement);
+
+        //const pElement = document.createElement("p");
+        //pElement.setAttribute("name", value = data[i].id);
+        //pElement.className = "searchItem";
+        //ppElement.appendChild(pElement);
+
+        //pElement.textContent = data[i].name;

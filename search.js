@@ -13,7 +13,7 @@ let alco_min=3;
 let alco_max=68;
 
 let today = new Date();
-let startyear=1989;
+let startyear=2005;
 
 
 //göm/visa prev+next-knappar:
@@ -48,71 +48,52 @@ let createButtons = (contElement) => {
 
 
 
+//skapar element för att spara kod åt oss:
+
+function createNewElement(type, parentElement, attributes, txtcont) {
+    const createdElement = document.createElement(type);
+    parentElement.appendChild(createdElement);
+    if (txtcont.length > 0) {createdElement.textContent=txtcont;}
+    for (key in attributes) {
+        createdElement.setAttribute(key, attributes[key]);
+    }
+    return createdElement;
+
+}
+
+
 //skapar elementen för söksidan:
 let initSearch = () => {
 
-    const contElement = document.createElement("article");
-    mainElement.appendChild(contElement);
-    contElement.className = "formcontainer";
 
-    const formElement = document.createElement("form");
-    contElement.appendChild(formElement);
+    //typ av element, parent element, attribut (klasser, id, etc.), textContent:
 
-    const errElement=document.createElement("span");
-    formElement.appendChild(errElement);
-    errElement.className="errorfield";
+    const contElement = createNewElement("article", mainElement, {class: 'formcontainer'}, "");
+
+    const formElement = createNewElement("form", contElement, {}, "");
+
+    const errElement = createNewElement("span", formElement, {class: 'errorfield'}, "");
     errElement.style.opacity=0;
 
-    const iElement = document.createElement("input");
-    formElement.appendChild(iElement);
-    iElement.type = "text";
-    iElement.placeholder = "Search for beer...🍺";
-    iElement.name = "beerSearch";
-    iElement.setAttribute('maxLength', 50);
+    const iElement = createNewElement("input", formElement, {type: 'text', placeholder: 'Search for beer...🍺', name: 'beerSearch', maxLength: 50}, "");
 
-    const hopsElement = document.createElement("input");
-    formElement.appendChild(hopsElement);
-    hopsElement.type = "text";
-    hopsElement.placeholder = "Search for hop...";
-    hopsElement.name = "hopSearch";
-    hopsElement.setAttribute('maxLength', 40);
+    const hopsElement = createNewElement("input", formElement, {type: 'text', placeholder: 'Search for hop...', name: 'hopSearch', maxLength: 40}, "");
 
-    const maltElement = document.createElement("input");
-    formElement.appendChild(maltElement);
-    maltElement.type = "text";
-    maltElement.placeholder = "Search for malt...";
-    maltElement.name = "maltSearch";
-    maltElement.setAttribute('maxLength', 40);
+    const maltElement = createNewElement("input", formElement, {type: 'text', placeholder: 'Search for malt...', name: 'maltSearch', maxLength: 40}, "");
 
     //element för alkoholhalt:
-
-    const alkWrapper=document.createElement("span");
-    formElement.appendChild(alkWrapper);
-    alkWrapper.className="alcoholfield";
-    alkWrapper.textContent="%:";
+    const alkWrapper = createNewElement("span", formElement, {class: 'alcoholfield'}, "%");
 
     let abvElement = [];
     for (let i=0;i<2;i++) {
-    abvElement[i] = document.createElement("input");
-    alkWrapper.appendChild(abvElement[i]);
-    abvElement[i].type = "number";
-    abvElement[i].placeholder = "greater than...";
-    abvElement[i].name = "abv_gtSearch";
-    if (i == 1) {abvElement[i].name = "abv_ltSearch";abvElement[i].placeholder = "lesser than...";}
-    abvElement[i].setAttribute('maxLength', 3);
-    abvElement[i].setAttribute('step', 0.1);
-    abvElement[i].setAttribute('max', alco_max);
-    abvElement[i].setAttribute('min', alco_min);
-    //abvElement.setAttribute('size', 8);
+    abvElement[i] = createNewElement("input", alkWrapper, {type: 'number', placeholder: 'Greater than...', name: 'abv_gtSearch', maxLength: 3, step: 0.1, max: alco_max, min: alco_min}, "");
+    if (i == 1) {abvElement[i].name = "abv_ltSearch";abvElement[i].placeholder = "Lesser than...";}
     }
 
 
     //element för datum år:
+    const dateWrapper = createNewElement("span", formElement, {class: 'alcoholfield'}, "After");
 
-    const dateWrapper=document.createElement("span");
-    formElement.appendChild(dateWrapper);
-    dateWrapper.className="alcoholfield";
-    dateWrapper.textContent="Date:";
 
     let yearElement = [];
     let monthElement = [];
@@ -144,17 +125,10 @@ let initSearch = () => {
     }
     
 
+    const sElement = createNewElement("button", formElement, {type: 'button', id: 'searchButton'}, "Search");
 
+    const sectElement = createNewElement("section", contElement, {class: 'searchList'}, "");
 
-    const sElement=document.createElement("button");
-    formElement.appendChild(sElement);
-    sElement.type="button";
-    sElement.id="searchButton";
-    sElement.textContent="Search";
-
-    const sectElement=document.createElement("section");
-    contElement.appendChild(sectElement);
-    sectElement.className="searchList";
 
     pgbutton=createButtons(contElement);
 
@@ -192,11 +166,14 @@ let onSubmit = (e, efield, hfield, mfield, abv_gt, abv_lt, year_one, year_two, m
     let newStr;
     let url = "";
     pageStr="per_page=" + pageSize + "&page="+page;
-    if (e.value.length > 0) { newStr=check_underscore(e.value);url += "&beer_name=" + newStr; }
-    if (hfield.value.length > 0) { newStr=check_underscore(hfield.value);url += "&hops=" + newStr; }
-    if (mfield.value.length > 0) { newStr=check_underscore(mfield.value);url += "&malt=" + newStr; }
-    if (abv_gt.value.length > 0) { url += "&abv_gt=" + abv_gt.value; }
-    if (abv_lt.value.length > 0) { url += "&abv_lt=" + abv_lt.value; }
+    if (e.value.length > 0) { newStr=check_underscore(e.value);url+="&beer_name="+newStr; }
+    if (hfield.value.length > 0) { newStr=check_underscore(hfield.value);url+="&hops="+newStr; }
+    if (mfield.value.length > 0) { newStr=check_underscore(mfield.value);url+="&malt="+newStr; }
+    if (abv_gt.value.length > 0) { url+="&abv_gt="+abv_gt.value; }
+    if (abv_lt.value.length > 0) { url+="&abv_lt="+abv_lt.value; }
+    
+    if ((year_one.value.length > 0) && (month_one.value.length > 0)) { url+="&brewed_after="+month_one.value+"-"+year_one.value; }
+    if ((year_two.value.length > 0) && (month_two.value.length > 0)) { url+="&brewed_before="+month_two.value+"-"+year_two.value; }
 
 
     globalURL=url;
@@ -205,7 +182,7 @@ let onSubmit = (e, efield, hfield, mfield, abv_gt, abv_lt, year_one, year_two, m
     //const url = `${API}?beer_name=${e.value}&per_page=${pageSize}&page=${page}`;
     //const url = `${API}?per_page=${pageSize}&page=${page}&beer_name=${e.value}`;
 
-    validateForm(API+pageStr+url, e, efield, hfield, mfield, abv_gt, abv_lt);
+    validateForm(API+pageStr+url, e, efield, hfield, mfield, abv_gt, abv_lt, year_one, year_two, month_one, month_two);
 
     //e.preventDefault();
 }
@@ -237,7 +214,6 @@ let renderFirstBeer = (data) => {
 
     let sElement = document.querySelector(".searchList");
     //mainElement.appendChild(sElement);
-    //sElement.innerHTML = '';
     removeAllChildNodes(sElement);
 
         //block/none, class
@@ -246,15 +222,11 @@ let renderFirstBeer = (data) => {
         showHide("1", ".prevNextButtons", 1);
 
     for (let i=0;i<data.length;i++) {
-        const ppElement = document.createElement("p");
-        sElement.appendChild(ppElement);
 
-        const pElement = document.createElement("p");
-        pElement.setAttribute("name", value = data[i].id);
-        pElement.className = "searchItem";
-        ppElement.appendChild(pElement);
 
-        pElement.textContent = data[i].name;
+        const ppElement = createNewElement("p", sElement, {}, "");
+
+        const pElement = createNewElement("p", ppElement, {class: 'searchItem', name: data[i].id}, data[i].name);
 
         pElement.addEventListener('click', () => {
             nysida(3);
@@ -278,19 +250,24 @@ let renderFirstBeer = (data) => {
 
 
 //validerar formulärets input innan den skickar vidare:
-let validateForm = (url, e, efield, hfield, mfield, abv_gt, abv_lt) => {
+let validateForm = (url, e, efield, hfield, mfield, abv_gt, abv_lt, year_one, year_two, month_one, month_two) => {
 
     let mess="";
     efield.style.opacity=0;
 
     //LÄGG TILL CHECK FÖR IFALL SAMTLIGA FÄLT ÄR BLANKA!
+    let datelengths=year_one.value.length+year_two.value.length+month_one.value.length+month_two.value.length;
+    let formSum=e.value.length+hfield.value.length+mfield.value.length+abv_lt.value.length+abv_gt.value.length+datelengths;
+    if (formSum <= 0) {
+        mess+="Minst ett av fälten måste fyllas i.\r";
+    }
 
 
-    let g1 = new Date(2020, 07);
-    let g2 = new Date(2020, 08);
+    let g1 = new Date(year_one.value, month_one.value);
+    let g2 = new Date(year_two.value, month_two.value);
     if (g1.getTime() < g2.getTime()) {alert("g1 is lesser than g2");}
-    else if (g1.getTime() > g2.getTime()) {alert("g1 is greater than g2");}
-    else {alert("both are equal");}
+    else if (g1.getTime() > g2.getTime()) {alert("g1 is greater than g2");} //err
+    else {if (datelengths > 0) {alert("both are equal");}} //err
 
 
 
@@ -312,7 +289,6 @@ let validateForm = (url, e, efield, hfield, mfield, abv_gt, abv_lt) => {
         }
 
     }
-
     if (abv_gt.value > abv_lt.value) {
         mess+="gt får inte vara större än lt.\r";
         abv_check[0].className="formError";
